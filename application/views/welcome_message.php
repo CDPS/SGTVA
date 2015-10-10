@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<p><a href="Calendar">Ir al Calendario</a> </p> <br>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
+		<p>Uquick:</p>
 
 		<code>application/views/welcome_message.php</code>
 
