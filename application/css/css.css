@@ -1,0 +1,34 @@
+.main {
+  display: table;
+  width: 100%;
+}
+
+.navegacion {
+
+  display: table-column;
+  width: 10%;
+  float: left;
+  height: 800px;
+  margin: 0;
+  padding: 0% 0%;
+
+}
+
+.container{
+
+	display: table-column;
+	width: 79%;
+	margin-top: 1px;
+	margin-right: 1px;
+	margin-left: 20px;
+	float: left;
+	height: 800px;
+}
+
+.page-header{
+	margin-top: 0px;
+}
+
+h3 {
+	margin-top: 0px;
+}

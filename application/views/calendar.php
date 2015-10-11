@@ -2,38 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hola koko</title>
+    <title>SGTVA</title>
     <link rel="stylesheet" type="text/css" href="application/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="application/css/css.css">
     <link rel="stylesheet" href="bower_components/bootstrap-calendar/css/calendar.css">
     <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="application/js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="application/js/js.js"></script>
+    
     <script src="application/js/bootstrap.min.js"></script>
+  
+
     <script type="text/javascript" src="bower_components/bootstrap-calendar/js/language/es-ES.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="page-header">
-                <div class="pull-right form-inline">
-                    <div class="btn-group">
-                        <button class="btn btn-primary" data-calendar-nav="prev"><< Anterior</button>
-                        <button class="btn" data-calendar-nav="today">Hoy</button>
-                        <button class="btn btn-primary" data-calendar-nav="next">Siguiente >></button>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn btn-warning" data-calendar-view="year">Año</button>
-                        <button class="btn btn-warning active" data-calendar-view="month">Mes</button>
-                        <button class="btn btn-warning" data-calendar-view="week">Semana</button>
-                        <button class="btn btn-warning" data-calendar-view="day">Día</button>
-                    </div>
-                </div>
-                <h3></h3>
-            </div>     
-        </div>
-        <div class="row">
-            <div id="calendar"></div>
+
+    <header>
+        <h1> Header de la aplicación</h1>
+    </header>   
+
+    <div class="main">
+        <div class="navegacion">
+            <ul class="nav nav-pills nav-stacked">
+
+                <li><a href="Home" id="inicio">Incio</a></li>
+                <li><a href="" id="conductores">Conductores</a></li>
+                <li><a href="#" id="vehiculos">Vehiculos</a></li>
+                <li><a href="#" id="reportes">Reportes</a></li>
+            </ul>
         </div>
 
-    
+        <div class="container">
+            <div class="row">
+                <div class="page-header">
+                    <div class="pull-right form-inline">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" data-calendar-nav="prev"><< Anterior</button>
+                            <button class="btn" data-calendar-nav="today">Hoy</button>
+                            <button class="btn btn-primary" data-calendar-nav="next">Siguiente >></button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-warning" data-calendar-view="year">Año</button>
+                            <button class="btn btn-warning active" data-calendar-view="month">Mes</button>
+                            <button class="btn btn-warning" data-calendar-view="week">Semana</button>
+                            <button class="btn btn-warning" data-calendar-view="day">Día</button>
+                        </div>
+                    </div>
+                    <h3></h3>
+                </div>     
+            </div>
+            <div class="row">
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+    </div>
+
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/bootstrap-calendar/js/calendar.js"></script>
     <script type="text/javascript">
