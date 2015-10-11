@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 
 	<div id="body">
-		<p>Pagina en construcción...</p>
+		<p>Pagina en construcción... ...</p>
 
 		<p><a href="Calendar">Ir al Calendario</a> </p> <br>
 
