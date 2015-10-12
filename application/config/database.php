@@ -80,10 +80,8 @@ $db['default'] = array(
 <<<<<<< HEAD
 	'password' => '12345',
 	'database' => 'sgtva',
-=======
-	'password' => '',
-	'database' => 'sgtva2.0',
->>>>>>> refs/remotes/origin/crud-conductor
+	'password' => '12345',
+	'database' => 'sgtva',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
