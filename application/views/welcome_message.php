@@ -95,16 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    <p><input type="submit" id="btnLogin" value="Login"/></p>
 		</form>      
 
-<<<<<<< HEAD
-		<p>Uquick:</p>
-
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-=======
      </fieldset>
->>>>>>> refs/remotes/origin/login
 
 	</div>
 

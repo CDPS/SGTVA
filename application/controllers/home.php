@@ -40,15 +40,9 @@ class Home extends CI_Controller {
 
 			foreach ($result as $row) {
 				$html.="<tr id=\"".$row->codigo."\" class=\"click\">";
-<<<<<<< HEAD
 				$html.="<th class=\"ref\">".$row->referencia."</th>";
 				$html.="<th class=\"cm\">".$row->capacidadMax."</th>";
 				$html.="<th class=\"pla\">".$row->placa."</th>";
-=======
-				$html.="<th class=\"referencia\">".$row->referencia."</th>";
-				$html.="<th class=\"placa\">".$row->placa."</th>";
-				$html.="<th class=\"cantidadMax\">".$row->cantidadMax."</th>";
->>>>>>> refs/remotes/origin/login
 				$html.="</tr>";		
 			}
 		}

@@ -40,11 +40,8 @@ class Vehiculo extends CI_Model {
 
     function findById($id){
 
-<<<<<<< HEAD
+
         $this->db->select('codigo,referencia,placa,capacidadMax');
-=======
-        $this->db->select('codigo,referencia,placa,cantidadMax');
->>>>>>> refs/remotes/origin/login
         $this->db->from('vehiculos');
         $this->db->where('codigo', $id);
     
