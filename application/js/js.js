@@ -1,5 +1,5 @@
-$(document).ready(function() {
 
+$(document).ready(function() {
 
     $('#vehiculos').click(function(event) {
     	
@@ -13,7 +13,7 @@ $(document).ready(function() {
                 }
         });
     });
-     
+
 });
 
 function link(url, update) {
