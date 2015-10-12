@@ -19,6 +19,8 @@
 
     <header>
         <h1> Header de la aplicación</h1>
+        <h3>Bienvenido <?php echo $nombre; ?></h3>
+        <a href="home/logout">Logout</a>
     </header>   
 
     <div class="main">

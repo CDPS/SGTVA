@@ -3,14 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	
-	public function index()
-	{
-		$this->load->view('calendar');
-        
+ 
+ 	function index() {
+   		
+   		
+	     if($this->session->userdata('logged_in')) {
+
+		     $session_data = $this->session->userdata('logged_in');
+		     $data['nombre'] = $session_data['nombre'];
+		     $this->load->view('calendar', $data);
+		
+		} else {
+		     //If no session, redirect to login page
+		     redirect('login', 'refresh');
+		}
+ 	}
+ 
+	public function logout() {
+
+	   $this->session->unset_userdata('logged_in');
+	   session_destroy();
+	   redirect('home', 'refresh');
 	}
+	   
+ 
 
 	public function vehiculos(){
+
 		$this->load->model("vehiculo");
 		
 		$result = $this->vehiculo->getVehiculos();
@@ -19,10 +38,10 @@ class Home extends CI_Controller {
 		if($result!=0){
 
 			foreach ($result as $row) {
-				$html.="<tr id=\"".$row->id."\" class=\"click\">";
-				$html.="<th class=\"ref\">".$row->referencia."</th>";
-				$html.="<th class=\"cm\">".$row->cm."</th>";
-				$html.="<th class=\"pla\">".$row->placa."</th>";
+				$html.="<tr id=\"".$row->codigo."\" class=\"click\">";
+				$html.="<th class=\"referencia\">".$row->referencia."</th>";
+				$html.="<th class=\"placa\">".$row->placa."</th>";
+				$html.="<th class=\"cantidadMax\">".$row->cantidadMax."</th>";
 				$html.="</tr>";		
 			}
 		}
