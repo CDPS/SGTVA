@@ -32,7 +32,7 @@ $(document).ready(function() {
                             success: function(respuesta){
                     
                                 $('.container').html(respuesta);
-                                }
+                            }
                         });
                     }
                 }
@@ -92,10 +92,7 @@ $(document).ready(function() {
     $('#eVehiculo').click(function(event) {
        
         var id= $('#idV').val();
-<<<<<<< HEAD
         
-=======
->>>>>>> refs/remotes/origin/crud-conductor
         if(id!=null){
 
             $.ajax({

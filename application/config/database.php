@@ -77,7 +77,6 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-<<<<<<< HEAD
 	'password' => '12345',
 	'database' => 'sgtva',
 	'password' => '12345',
