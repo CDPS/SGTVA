@@ -19,10 +19,10 @@ class Home extends CI_Controller {
 		if($result!=0){
 
 			foreach ($result as $row) {
-				$html.="<tr class=\"".$row->id."\">";
-				$html.="<th>".$row->referencia."</th>";
-				$html.="<th>".$row->cm."</th>";
-				$html.="<th>".$row->placa."</th>";
+				$html.="<tr id=\"".$row->id."\" class=\"click\">";
+				$html.="<th class=\"ref\">".$row->referencia."</th>";
+				$html.="<th class=\"cm\">".$row->cm."</th>";
+				$html.="<th class=\"pla\">".$row->placa."</th>";
 				$html.="</tr>";		
 			}
 		}
@@ -49,7 +49,7 @@ class Home extends CI_Controller {
 					$data = array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
 					$result = $this->vehiculo->insert($data);
 					
-					
+
 					$id = $this->vehiculo->getLast();
 
 					echo $id;

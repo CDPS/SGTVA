@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
      $('#cVehiculo').click(function(event) {
        
         var ref = $('#referencia').val();
@@ -25,8 +24,17 @@ $(document).ready(function() {
                         $("#placa").val('');
                         $("#cm").val('');
 
-                        $("#cuerpoT").append("<tr class=\""+respuesta+"\"><th>"+ref+"</th>"+"<th>"+cm+"</th>"+"<th>"+placa+"</th></tr>");
-                  
+                        $.ajax({
+                            url: "home/vehiculos",
+                            type: "POST",
+                            dataType: "html",
+                            success: function(respuesta){
+                    
+                                $('.container').html(respuesta);
+                                }
+                        });
+
+
                 }
             });
         }else{
@@ -34,4 +42,19 @@ $(document).ready(function() {
         }
     });
 
+   
+    $(".click").click(function(e) {
+        var data = $(this).attr("id");
+
+        var ref= $("#"+data+" .ref").html();
+        var cm =$("#"+data+" .cm").html();
+        var pla = $("#"+data+" .pla").html();
+
+        $("#referencia").val(ref);
+        $("#placa").val(pla);
+        $("#cm").val(cm);   
+    });
+
+
 });
+
