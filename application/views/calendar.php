@@ -26,7 +26,7 @@
             <ul class="nav nav-pills nav-stacked">
 
                 <li><a href="Home" id="inicio">Incio</a></li>
-                <li><a href="" id="conductores">Conductores</a></li>
+                <li><a href="#" id="conductores">Conductores</a></li>
                 <li><a href="#" id="vehiculos">Vehiculos</a></li>
                 <li><a href="#" id="reportes">Reportes</a></li>
             </ul>

@@ -14,6 +14,19 @@ $(document).ready(function() {
         });
     });
 
+    $('#conductores').click(function(event) {
+        
+        $.ajax({
+                url: "home/conductores",
+                type: "POST",
+                dataType: "html",
+                success: function(respuesta){
+                    
+                   $('.container').html(respuesta);
+                }
+        });
+    });
+
 });
 
 function link(url, update) {

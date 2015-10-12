@@ -1,32 +1,29 @@
 $(document).ready(function() {
 
-     $('#cVehiculo').click(function(event) {
+     $('#cConductor').click(function(event) {
        
-        var ref = $('#referencia').val();
-        var placa = $('#placa').val();
-        var cm = $('#cm').val();
+        var nom = $('#nombre').val();
+        var tel = $('#telefono').val();
 
-        if(!isNaN(cm) && placa!=null && cm!=null){
+        if(!nom!=null && tel!=null){
 
             $.ajax({
-                url: "home/cVehiculo",
+                url: "home/cConductor",
                 type: "POST",
                 data:{
-                        referencia: ref,
-                        placa: placa,
-                        cm:cm
+                        nombre: nom,
+                        telefono: tel
                 },
                 success: function(respuesta){
                     
                     if(respuesta=="ok"){
-                        alert("Se registro el vehiculo");
+                        alert("Se registro el conductor");
                         
-                        $("#referencia").val('');
-                        $("#placa").val('');
-                        $("#cm").val('');
+                        $("#nombre").val('');
+                        $("#telefono").val('');
 
                         $.ajax({
-                            url: "home/vehiculos",
+                            url: "home/conductores",
                             type: "POST",
                             dataType: "html",
                             success: function(respuesta){
@@ -43,35 +40,32 @@ $(document).ready(function() {
     });
 
 
-    $('#uVehiculo').click(function(event) {
+    $('#uConductor').click(function(event) {
         
-        var id= $('#idV').val();
-        var ref = $('#referencia').val();
-        var placa = $('#placa').val();
-        var cm = $('#cm').val();
+        var id= $('#idC').val();
+        var nom = $('#nombre').val();
+        var tel = $('#telefono').val();
 
-        if(!isNaN(cm) && placa!=null && cm!=null && id!=null){
+        if(nom!=null && tel!=null && id!=null){
 
             $.ajax({
-                url: "home/uVehiculo",
+                url: "home/uConductor",
                 type: "POST",
                 data:{
                         id:id,
-                        referencia: ref,
-                        placa: placa,
-                        cm:cm
+                        nombre: nom,
+                        telefono: tel
                 },
                 success: function(respuesta){
                     
                     if(respuesta=="ok"){
-                        alert("Se actulizaron los datos del vehiculo");
+                        alert("Se actulizaron los datos del conductor");
                         $("#idV").val('');
-                        $("#referencia").val('');
-                        $("#placa").val('');
-                        $("#cm").val('');
+                        $("#nombre").val('');
+                        $("#telefono").val('');
 
                         $.ajax({
-                            url: "home/vehiculos",
+                            url: "home/conductores",
                             type: "POST",
                             dataType: "html",
                             success: function(respuesta){
@@ -80,7 +74,7 @@ $(document).ready(function() {
                                 }
                         });
                     }else{
-                        alert("No se pudo actulizar los datos del vehiculo");
+                        alert("No se pudo actualizar los datos del conductor");
                     }
                 }
             });
@@ -89,17 +83,13 @@ $(document).ready(function() {
         }
     });
 
-    $('#eVehiculo').click(function(event) {
+    $('#eConductor').click(function(event) {
        
-        var id= $('#idV').val();
-<<<<<<< HEAD
-        
-=======
->>>>>>> refs/remotes/origin/crud-conductor
+        var id= $('#idC').val();
         if(id!=null){
 
             $.ajax({
-                url: "home/eVehiculo",
+                url: "home/eConductor",
                 type: "POST",
                 data:{
                         id:id
@@ -108,14 +98,13 @@ $(document).ready(function() {
                     
                     if(respuesta=="ok"){
                         
-                        alert("El vehiculo ha sido Elminado");
-                        $("#idV").val('');
-                        $("#referencia").val('');
-                        $("#placa").val('');
-                        $("#cm").val('');
+                        alert("El conductor ha sido Elminado");
+                        $("#idC").val('');
+                        $("#nombre").val('');
+                        $("#telefono").val('');
 
                         $.ajax({
-                            url: "home/vehiculos",
+                            url: "home/conductores",
                             type: "POST",
                             dataType: "html",
                             success: function(respuesta){
@@ -124,28 +113,26 @@ $(document).ready(function() {
                                 }
                         });
                     }else{
-                        alert("No se pudo elimiar el vehiculo");
+                        alert("No se pudo eliminar los datos del conductor");
                     }
                     
                 }
             });
         }else{
-            alert("Debe seleccionar un vehiculo");
+            alert("Debe seleccionar un conductor");
         }
     });
 
-    $(".click").click(function(e) {
+  $(".click").click(function(e) {
         var data = $(this).attr("id");
 
-        var ref= $("#"+data+" .ref").html();
-        var cm =$("#"+data+" .cm").html();
-        var pla = $("#"+data+" .pla").html();
+        var nom= $("#"+data+" .nom").html();
+        var tel =$("#"+data+" .tel").html();
 
          
-        $("#idV").val(data);
-        $("#referencia").val(ref);
-        $("#placa").val(pla);
-        $("#cm").val(cm);   
+        $("#idC").val(data);
+        $("#nombre").val(nom);
+        $("#telefono").val(tel);
     });
 
 

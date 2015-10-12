@@ -10,9 +10,15 @@ class Vehiculo extends CI_Model {
         // Call the Model constructor
         parent::__construct();
     }
+<<<<<<< HEAD
     
     function delete($data){
        $this->db->delete('vehiculos', array('codigo' => $data));
+=======
+
+    function delete($data){
+        $this->db->delete('vehiculos', array('codigo' => $data)); 
+>>>>>>> refs/remotes/origin/crud-conductor
 
        if($this->db->affected_rows()==0) {
          return 0;
