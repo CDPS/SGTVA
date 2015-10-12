@@ -79,6 +79,8 @@ $(document).ready(function() {
                                 $('.container').html(respuesta);
                                 }
                         });
+                    }else{
+                        alert("No se pudo actulizar los datos del vehiculo");
                     }
                 }
             });
@@ -118,6 +120,8 @@ $(document).ready(function() {
                                 $('.container').html(respuesta);
                                 }
                         });
+                    }else{
+                        alert("No se pudo elimiar el vehiculo");
                     }
                     
                 }

@@ -11,7 +11,6 @@ class Vehiculo extends CI_Model {
         parent::__construct();
     }
     
-
     function delete($data){
        $this->db->delete('vehiculos', array('codigo' => $data));
 

@@ -71,7 +71,11 @@ class Home extends CI_Controller {
 					$this->load->model("vehiculo");
 					$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 					$result = $this->vehiculo->update($id,$data);
-					echo "ok";
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
@@ -88,7 +92,11 @@ class Home extends CI_Controller {
 					
 					$this->load->model("vehiculo");
 					$result = $this->vehiculo->delete($id);
-					echo "ok";
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
