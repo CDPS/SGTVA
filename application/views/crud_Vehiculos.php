@@ -8,17 +8,17 @@
  
 <div class="vContainer">
 	<div class="dtabla">
-		<table class="table table-hover">
+		<table class="table table-hover" id="cuerpoT">
 					<thead>
 						<tr>
 							<th>Referencia</th>
-							<th>Placa</th>
 							<th>Capacidad Máxima</th>
+							<th>Placa</th>
 						</tr>	
 					</thead>
 
 					<tbody>
-			
+						<?php echo $html ?>
 					</tbody>
 		</table>
 	</div>

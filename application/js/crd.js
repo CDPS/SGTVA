@@ -18,16 +18,15 @@ $(document).ready(function() {
                         cm:cm
                 },
                 success: function(respuesta){
-                  
-                  if(respuesta=="ok"){
+                    
                         alert("Se registro el vehiculo");
                         
                         $("#referencia").val('');
                         $("#placa").val('');
                         $("#cm").val('');
-                  }else{
-                    alert("Debe ingresar todos los campos");
-                  }
+
+                        $("#cuerpoT").append("<tr class=\""+respuesta+"\"><th>"+ref+"</th>"+"<th>"+cm+"</th>"+"<th>"+placa+"</th></tr>");
+                  
                 }
             });
         }else{

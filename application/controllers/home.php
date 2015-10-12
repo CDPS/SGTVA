@@ -11,12 +11,28 @@ class Home extends CI_Controller {
 	}
 
 	public function vehiculos(){
+		$this->load->model("vehiculo");
+		
+		$result = $this->vehiculo->getVehiculos();
+		$html='';
 
-		$response = $this->load->view('crud_Vehiculos','',TRUE);
+		if($result!=0){
+
+			foreach ($result as $row) {
+				$html.="<tr class=\"".$row->id."\">";
+				$html.="<th>".$row->referencia."</th>";
+				$html.="<th>".$row->cm."</th>";
+				$html.="<th>".$row->placa."</th>";
+				$html.="</tr>";		
+			}
+		}
+
+		$data['html']=$html;
+		$response = $this->load->view('crud_Vehiculos',$data ,TRUE);
 
 		echo $response;
 	}
-		
+
 	public function cVehiculo(){
 
 		if($_POST) {	
@@ -30,12 +46,13 @@ class Home extends CI_Controller {
 				if ($referencia!= null && $placa != null && $cm != null) {
 					
 					$this->load->model("vehiculo");
-
 					$data = array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+					$result = $this->vehiculo->insert($data);
+					
+					
+					$id = $this->vehiculo->getLast();
 
-					$this->vehiculo->insert($data);
-
-					echo "ok";
+					echo $id;
 				}
 		}
 	}
