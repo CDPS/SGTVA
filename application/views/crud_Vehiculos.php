@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 <h3>Vehiculos</h3>
 
 <div class="dtabla">
@@ -16,7 +15,7 @@
 		
 				</tbody>
 	</table>
-=======
+
 <head>
     <script src="application/js/crd.js"></script>
 </head>
@@ -68,6 +67,5 @@
 
 	</div>
 
->>>>>>> refs/remotes/origin/Crud-Vehiculos
 </div>
 
