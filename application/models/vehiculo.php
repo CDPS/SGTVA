@@ -11,23 +11,9 @@ class Vehiculo extends CI_Model {
         parent::__construct();
     }
     
-    function get_last_ten_entries()
-    {
-        $query = $this->db->get('entries', 10);
-        return $query->result();
-    }
-
-    function getLast(){
- 
-        $query = $this->db->query("SELECT MAX(id) AS id FROM vehiculos");
-        $row = $query->row_array();
-        $id = trim($row['id']);
-        return $id;
-    }
 
     function delete($data){
         $this->db->delete('vehiculos', array('id' => $data)); 
-
     }
 
     function insert($data)
@@ -39,6 +25,21 @@ class Vehiculo extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update('vehiculos', $data);
     }
+
+    function findById($id){
+
+        $this->db->select('id,referencia,placa,cm');
+        $this->db->from('vehiculos');
+        $this->db->where('id', $id);
+    
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+        return 0;
+    }
+
 
     function getVehiculos(){
 
@@ -52,7 +53,5 @@ class Vehiculo extends CI_Model {
         }
         return 0;
     }
-
-    
 
 }
