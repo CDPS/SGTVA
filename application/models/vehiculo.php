@@ -33,7 +33,7 @@ class Vehiculo extends CI_Model {
         $this->db->where('id', $id);
     
         $query = $this->db->get();
-        if($query->num_rows() > 0 )
+        if($query->num_rows() == 1 )
         {
             return $query->result();
         }
