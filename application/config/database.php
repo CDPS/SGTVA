@@ -77,7 +77,11 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
+<<<<<<< HEAD
 	'password' => '12345',
+=======
+	'password' => '',
+>>>>>>> refs/remotes/origin/login
 	'database' => 'sgtva',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
