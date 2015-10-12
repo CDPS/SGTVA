@@ -48,11 +48,48 @@ class Home extends CI_Controller {
 					$this->load->model("vehiculo");
 					$data = array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
 					$result = $this->vehiculo->insert($data);
+				
+					echo "ok";
+				}
+		}
+	}
+
+	public function uVehiculo(){
+
+		if($_POST) {	
+				/*
+				* se obtienen dichos valores.
+				*/
+
+				$id = $_POST["id"];
+                $referencia = $_POST["referencia"];
+				$placa =  $_POST["placa"];
+				$cm =  $_POST["cm"];
+				
+				if ($referencia!= null && $placa != null && $cm != null&& $id!=null) {
 					
+					$this->load->model("vehiculo");
+					$data = array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+					$result = $this->vehiculo->update($id,$data);
+					echo "ok";
+				}
+		}
+	}
 
-					$id = $this->vehiculo->getLast();
+	public function eVehiculo(){
 
-					echo $id;
+		if($_POST) {	
+				/*
+				* se obtienen dichos valores.
+				*/
+				$id=$_POST["id"];
+              
+				
+				if ($id!=null) {
+					
+					$this->load->model("vehiculo");
+					$result = $this->vehiculo->delete($id);
+					echo "ok";
 				}
 		}
 	}

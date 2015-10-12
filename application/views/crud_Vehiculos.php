@@ -45,7 +45,8 @@
 		    <input type="text" class="form-control" id="cm" placeholder="Capacidad Máxima"></p>
              <button type="button" class="btn btn-success" id="cVehiculo"> Crear </button> 
              <button type="button" class="btn btn-success" id="eVehiculo"> Eliminar </button> 
-             <button type="button" class="btn btn-success" id="uVehiculo">Editar</button>          
+             <button type="button" class="btn btn-success" id="uVehiculo">Editar</button>   
+             <input type="hidden" id="idV"> </input>        
      </fieldset>
 
 	</div>

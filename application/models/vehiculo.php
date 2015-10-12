@@ -25,9 +25,19 @@ class Vehiculo extends CI_Model {
         return $id;
     }
 
+    function delete($data){
+        $this->db->delete('vehiculos', array('id' => $data)); 
+
+    }
+
     function insert($data)
     {
         $this->db->insert('vehiculos', $data);
+    }
+
+    function update($id,$data){
+        $this->db->where('id', $id);
+        $this->db->update('vehiculos', $data);
     }
 
     function getVehiculos(){
