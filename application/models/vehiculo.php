@@ -13,7 +13,7 @@ class Vehiculo extends CI_Model {
     
 
     function delete($data){
-       $this->db->delete('vehiculos', array('id' => $data));
+       $this->db->delete('vehiculos', array('codigo' => $data));
 
        if($this->db->affected_rows()==0) {
          return 0;
@@ -30,7 +30,7 @@ class Vehiculo extends CI_Model {
     }
 
     function update($id,$data){
-        $this->db->where('id', $id);
+        $this->db->where('codigo', $id);
         $this->db->update('vehiculos', $data);
         if($this->db->affected_rows()==0) {
          return 0;
@@ -40,9 +40,9 @@ class Vehiculo extends CI_Model {
 
     function findById($id){
 
-        $this->db->select('id,referencia,placa,cm');
+        $this->db->select('codigo,referencia,placa,capacidadMax');
         $this->db->from('vehiculos');
-        $this->db->where('id', $id);
+        $this->db->where('codigo', $id);
     
         $query = $this->db->get();
         if($query->num_rows() == 1 )
@@ -55,7 +55,7 @@ class Vehiculo extends CI_Model {
 
     function getVehiculos(){
 
-        $this->db->select('id,referencia,placa,cm');
+        $this->db->select('codigo,referencia,placa,capacidadMax');
         $this->db->from('vehiculos');
     
         $query = $this->db->get();

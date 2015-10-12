@@ -29,7 +29,6 @@
 	<fieldset class="scheduler-border">
     <legend class="scheduler-border">Detalle Vehiculo</legend>
 		
-
 		    <label>Referencia:</label>
 		    <p><label class="sr-only" for="referencia">Referencia</label>
 		    <input type="text" class="form-control" id="referencia" placeholder="Referencia"></p>

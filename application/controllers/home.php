@@ -19,9 +19,9 @@ class Home extends CI_Controller {
 		if($result!=0){
 
 			foreach ($result as $row) {
-				$html.="<tr id=\"".$row->id."\" class=\"click\">";
+				$html.="<tr id=\"".$row->codigo."\" class=\"click\">";
 				$html.="<th class=\"ref\">".$row->referencia."</th>";
-				$html.="<th class=\"cm\">".$row->cm."</th>";
+				$html.="<th class=\"cm\">".$row->capacidadMax."</th>";
 				$html.="<th class=\"pla\">".$row->placa."</th>";
 				$html.="</tr>";		
 			}
@@ -46,7 +46,7 @@ class Home extends CI_Controller {
 				if ($referencia!= null && $placa != null && $cm != null) {
 					
 					$this->load->model("vehiculo");
-					$data = array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+					$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 					$result = $this->vehiculo->insert($data);
 				
 					echo "ok";
@@ -69,7 +69,7 @@ class Home extends CI_Controller {
 				if ($referencia!= null && $placa != null && $cm != null&& $id!=null) {
 					
 					$this->load->model("vehiculo");
-					$data = array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+					$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 					$result = $this->vehiculo->update($id,$data);
 					echo "ok";
 				}
@@ -83,7 +83,6 @@ class Home extends CI_Controller {
 				* se obtienen dichos valores.
 				*/
 				$id=$_POST["id"];
-              
 				
 				if ($id!=null) {
 					

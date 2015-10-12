@@ -14,26 +14,6 @@ class TestVehiculos extends CI_Controller {
 		$this->testInsert();
 		$this->testUpdate();
 		$this->testDelete();
-		$this->testFindById();
-	}
-	public function testFindById(){
-		$id=1;
-		$referencia="prueba";
-		$placa="prueba";
-		$cm="2";
-
-		$esperado=array('id' => $id,'referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
-		
-		$query = $this->vehiculo->findById($id);
-
-		$respuesta= $query[0];
-		$result = array();
-		
-		$result['id'] = $respuesta->id;
-    	$result['referencia']= $respuesta->referencia;
-    	$result['placa'] = $respuesta->referencia;
-    	$result['cm']=$respuesta ->cm;
-		echo $this->unit->run($result, $esperado, 'findById');	
 	}
 
 	public function testInsert(){
@@ -43,7 +23,7 @@ class TestVehiculos extends CI_Controller {
 		$placa="prueba2";
 		$cm="4";
 
-		$esperado=array('id' => $id,'referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+		$esperado=array('codigo' => $id,'referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 		$result = $this->vehiculo->insert($esperado);
 
 		$query = $this->vehiculo->findById($id);
@@ -51,10 +31,10 @@ class TestVehiculos extends CI_Controller {
 		$respuesta= $query[0];
 		$result = array();
 		
-		$result['id'] = $respuesta->id;
+		$result['codigo'] = $respuesta->codigo;
     	$result['referencia']= $respuesta->referencia;
     	$result['placa'] = $respuesta->referencia;
-    	$result['cm']=$respuesta ->cm;
+    	$result['capacidadMax']=$respuesta ->capacidadMax;
 		echo $this->unit->run($result, $esperado, 'Insert Test');	
 	}
 
@@ -65,7 +45,7 @@ class TestVehiculos extends CI_Controller {
 		$placa="prueba4";
 		$cm="8";
 
-		$esperado=array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+		$esperado=array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 		
 		$result = $this->vehiculo->update($id,$esperado); 
 
@@ -76,7 +56,7 @@ class TestVehiculos extends CI_Controller {
 		
     	$result['referencia']= $respuesta->referencia;
     	$result['placa'] = $respuesta->referencia;
-    	$result['cm']=$respuesta ->cm;
+    	$result['capacidadMax']=$respuesta ->capacidadMax;
 		echo $this->unit->run($result, $esperado, 'Update Test');	
 	}
 
