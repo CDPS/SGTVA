@@ -13,17 +13,29 @@ class Vehiculo extends CI_Model {
     
 
     function delete($data){
-        $this->db->delete('vehiculos', array('id' => $data)); 
+       $this->db->delete('vehiculos', array('id' => $data));
+
+       if($this->db->affected_rows()==0) {
+         return 0;
+       }       
+       return 1;
     }
 
     function insert($data)
     {
-        $this->db->insert('vehiculos', $data);
+        if($this->db->insert('vehiculos', $data)){
+            return 1;
+        }
+        return 0;
     }
 
     function update($id,$data){
         $this->db->where('id', $id);
         $this->db->update('vehiculos', $data);
+        if($this->db->affected_rows()==0) {
+         return 0;
+       }       
+       return 1;
     }
 
     function findById($id){

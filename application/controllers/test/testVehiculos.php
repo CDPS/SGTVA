@@ -9,38 +9,13 @@ class TestVehiculos extends CI_Controller {
         $this->load->model('vehiculo');
     }
 
-    public function index()
+  public function index()
 	{
-		echo "hola";
-        
+		$this->testInsert();
+		$this->testUpdate();
+		$this->testDelete();
+		$this->testFindById();
 	}
-
-	public function testRestarHora()
-	{
- 
-        $test_name = 'Resta de minutos';
-        $hora1 = '00:45';
-        $hora2 = '00:20';
-        $esperado = '00:25';
-        $suma = $this->hora->restarTiempo($hora1,$hora2);
-        echo $this->unit->run($suma, $esperado, $test_name);
- 
-        $test_name = 'Resta de horas';
-        $hora1 = '15:15';
-        $hora2 = '12:30';
-        $esperado = '02:45';
-        $suma = $this->hora->restarTiempo($hora1,$hora2);
-        echo $this->unit->run($suma, $esperado, $test_name);
- 
-        $test_name = 'Resta de horas menos minutos';
-        $hora1 = '12:08';
-        $hora2 = '00:15';
-        $esperado = '11:53';
-        $suma = $this->hora->restarTiempo($hora1,$hora2);
-        echo $this->unit->run($suma, $esperado, $test_name);
- 
-	}
-
 	public function testFindById(){
 		$id=1;
 		$referencia="prueba";
@@ -58,10 +33,59 @@ class TestVehiculos extends CI_Controller {
     	$result['referencia']= $respuesta->referencia;
     	$result['placa'] = $respuesta->referencia;
     	$result['cm']=$respuesta ->cm;
-		
-		print_r($result);
-		
-		print_r($esperado);
 		echo $this->unit->run($result, $esperado, 'findById');	
 	}
+
+	public function testInsert(){
+
+		$id=2;
+		$referencia="prueba2";
+		$placa="prueba2";
+		$cm="4";
+
+		$esperado=array('id' => $id,'referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+		$result = $this->vehiculo->insert($esperado);
+
+		$query = $this->vehiculo->findById($id);
+
+		$respuesta= $query[0];
+		$result = array();
+		
+		$result['id'] = $respuesta->id;
+    	$result['referencia']= $respuesta->referencia;
+    	$result['placa'] = $respuesta->referencia;
+    	$result['cm']=$respuesta ->cm;
+		echo $this->unit->run($result, $esperado, 'Insert Test');	
+	}
+
+	public function testUpdate(){
+
+		$id=2;
+		$referencia="prueba4";
+		$placa="prueba4";
+		$cm="8";
+
+		$esperado=array('referencia'=>$referencia,'placa'=>$placa,'cm'=>$cm);
+		
+		$result = $this->vehiculo->update($id,$esperado); 
+
+		$query = $this->vehiculo->findById($id);
+
+		$respuesta= $query[0];
+		$result = array();
+		
+    	$result['referencia']= $respuesta->referencia;
+    	$result['placa'] = $respuesta->referencia;
+    	$result['cm']=$respuesta ->cm;
+		echo $this->unit->run($result, $esperado, 'Update Test');	
+	}
+
+	public function testDelete(){
+
+		$id=2;
+		$esperado=1;
+		$resultado= $this->vehiculo->delete($id);
+		echo $this->unit->run($resultado, $esperado, 'Delete Test');	
+	}
+	 
 }
