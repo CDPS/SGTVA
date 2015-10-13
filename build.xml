@@ -17,7 +17,7 @@
         <echo message="+------------------------------------------+"/>
  	<phing phingfile="${project.basedir}/build/build-configuration.xml" target="configuration" />
        
-       <zip destfile="php.zip" basedir="./php">
+       <zip destfile="php.zip" basedir=".">
             <include name="*" />
     	</zip>
     </target>
