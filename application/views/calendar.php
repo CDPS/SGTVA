@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SGTVA</title>
+    <title>SGTVA </title>
     <link rel="stylesheet" type="text/css" href="application/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="application/css/css.css">
     <link rel="stylesheet" href="bower_components/bootstrap-calendar/css/calendar.css">
