@@ -18,9 +18,7 @@
 <body>
 
     <header>
-        <h1> Header de la aplicación</h1>
-        <h3>Bienvenido <?php echo $nombre; ?></h3>
-        <a href="home/logout">Logout</a>
+        <h1><img src="http://www.uniquindio.edu.co/info/uniquindio/media/bloque2778464"></h1>
     </header>   
 
     <div class="main">
@@ -31,6 +29,7 @@
                 <li><a href="#" id="conductores">Conductores</a></li>
                 <li><a href="#" id="vehiculos">Vehiculos</a></li>
                 <li><a href="#" id="reportes">Reportes</a></li>
+                <li><a href="home/logout">Cerrar sesión</a></li>
             </ul>
         </div>
 
@@ -147,7 +146,15 @@
 </body>
 
 <footer>
-    <hr>
+    
+    <div>
 
+        <p>Copyright &copy; 2015</p>
+        <p>Julio Cesar Garcia Sabogal</p>
+        <p>Fabio Stiven Oquendo Soler</p>
+        <p>Cristian Daniel Palechor Sepulveda</p>
+
+    </div>
+    
 </footer>
 </html>
