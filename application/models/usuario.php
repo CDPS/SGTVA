@@ -15,7 +15,7 @@ Class Usuario extends CI_Model {
     function login($cedula, $contrasenia) {
 
       $this -> db -> select('codigo, nombre, cedula, contrasenia');
-      $this -> db -> from('Usuarios');
+      $this -> db -> from('usuarios');
       $this -> db -> where('cedula', $cedula);
       $this -> db -> where('contrasenia', $contrasenia);
       $this -> db -> limit(1);
@@ -30,6 +30,55 @@ Class Usuario extends CI_Model {
 
          return false;
       }
+    }
+
+    function insert($data) {
+
+        if($this->db->insert('usuarios', $data)){
+
+            return 1;
+        }
+
+        return 0;
+    }
+
+    function update($id,$data) {
+
+        $this->db->where('codigo', $id);
+        $this->db->update('usuarios', $data);
+
+        if($this->db->affected_rows()==0) {
+
+         return 0;
+       }
+
+       return 1;
+    }
+
+    function delete($data) {
+        $this->db->delete('usuarios', array('codigo' => $data)); 
+
+       if($this->db->affected_rows()==0) {
+
+         return 0;
+       }
+
+       return 1;
+    }
+
+     function findById($id){
+
+        $this->db->select('codigo,nombre,cedula,contrasenia');
+        $this->db->from('usuarios');
+        $this->db->where('codigo', $id);
+    
+        $query = $this->db->get();
+
+        if($query->num_rows() == 1 )
+        {
+            return $query->result();
+        }
+        return 0;
     }
 }
 ?>

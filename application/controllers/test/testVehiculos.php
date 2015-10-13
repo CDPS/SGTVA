@@ -45,8 +45,7 @@ class TestVehiculos extends CI_Controller {
 		$placa="prueba4";
 		$cm="8";
 
-		$esperado=array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
-		
+		$esperado=array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);		
 		$result = $this->vehiculo->update($id,$esperado); 
 
 		$query = $this->vehiculo->findById($id);

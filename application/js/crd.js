@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
+
      $('#cVehiculo').click(function(event) {
+
        
         var ref = $('#referencia').val();
         var placa = $('#placa').val();

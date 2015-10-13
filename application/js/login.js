@@ -15,8 +15,14 @@ $(document).ready(function() {
                         contrasenia: contrasenia
                 },
                 success: function(respuesta){
-                    
-                    $.ajax({
+
+                    if (respuesta == "fail") {
+
+                        alert("Datos invalidos");
+
+                    } else  {
+
+                        $.ajax({
                             
                             url: "home",
                             type: "POST",
@@ -25,7 +31,9 @@ $(document).ready(function() {
 
                                 location.href = '/SGTVA/home';
                             }
-                    });
+                        });
+                    }
+                      
                 }
             });
 

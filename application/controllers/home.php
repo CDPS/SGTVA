@@ -123,6 +123,7 @@ class Home extends CI_Controller {
 
 //----------------------------------------------CONDUCTORES---------------------------------------------//
 	public function conductores(){
+
 		$this->load->model("conductor");
 		
 		$result = $this->conductor->getConductores();
@@ -154,12 +155,14 @@ class Home extends CI_Controller {
 				$telefono =  $_POST["telefono"];
 				
 				if ($nombre!= null && $telefono != null) {
+
 					$this->load->model("conductor");
 					$data = array('nombre'=>$nombre,'numTelefono'=>$telefono);
 					$result = $this->conductor->insert($data);
 					echo "ok";
 				}
 		}
+
 	}
 
 	public function uConductor(){

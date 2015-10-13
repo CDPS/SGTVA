@@ -1,4 +1,6 @@
-
+<head>
+    <script src="application/js/crd.js"></script> 
+</head>
 
 <h3>Vehiculos</h3>
 
