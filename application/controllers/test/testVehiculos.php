@@ -33,7 +33,7 @@ class TestVehiculos extends CI_Controller {
 		
 		$result['codigo'] = $respuesta->codigo;
     	$result['referencia']= $respuesta->referencia;
-    	$result['placa'] = $respuesta->referencia;
+    	$result['placa'] = $respuesta->placa;
     	$result['capacidadMax']=$respuesta ->capacidadMax;
 		echo $this->unit->run($result, $esperado, 'Insert Test');	
 	}
@@ -55,7 +55,7 @@ class TestVehiculos extends CI_Controller {
 		$result = array();
 		
     	$result['referencia']= $respuesta->referencia;
-    	$result['placa'] = $respuesta->referencia;
+    	$result['placa'] = $respuesta->placa;
     	$result['capacidadMax']=$respuesta ->capacidadMax;
 		echo $this->unit->run($result, $esperado, 'Update Test');	
 	}
