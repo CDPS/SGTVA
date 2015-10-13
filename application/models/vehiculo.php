@@ -3,7 +3,7 @@ class Vehiculo extends CI_Model {
 
     var $placa   = '';
     var $referencia = '';
-    var $cm    = '';
+    var $cantidadMax    = '';
 
     function __construct()
     {
@@ -39,6 +39,7 @@ class Vehiculo extends CI_Model {
     }
 
     function findById($id){
+
 
         $this->db->select('codigo,referencia,placa,capacidadMax');
         $this->db->from('vehiculos');
