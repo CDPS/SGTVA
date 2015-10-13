@@ -83,19 +83,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1>Sistema de Gestión de Transporte<br><br><img src="https://pbs.twimg.com/profile_images/2436226416/77iwm57o4cyovswjyxki_400x400.jpeg"></h1>
 	
 
-	<div id="body">
-		<p>Pagina en construcción... ...</p>
+	<div class="login">
 
-		<p><a href="Calendar">Ir al Calendario</a> </p> <br>
+	<fieldset class="scheduler-border-login">
+    	<legend class="scheduler-border">Login</legend>
+			
+		    <p><label for="cedula">Cedula:</label>
+		    <input type="text" id="cedula" name="cedula"/></p>
+		    <p><label for="contrasenia">Contraseña:</label>
+		    <input type="password" id="contrasenia" name="contrasenia"/></p>
+		    <p><input type="submit" id="btnLogin" value="Login"/></p>
+		</form>      
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
+     </fieldset>
 
 	</div>
+
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
