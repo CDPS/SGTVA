@@ -1,9 +1,10 @@
-<h3 id="td">Registro de vehiculos</h3>
+
+<h3>Registros del día <?php echo $fecha?></h3>
 
  <p><label for="vehiculo">Vehiculo:</label>
         <select  class="form-control" id="cmbVehiculos" placeholder="Vehiculo" name="vehiculo" required>
         <option value='0'>Vehiculos</option>
-        <%=cal._prueba()%>
+        <?php echo $html?>
 </select></p>
 
 <div class="tablaR">
@@ -30,4 +31,3 @@
 <button type="button" class="btn btn-success" id="eConductor"> Eliminar </button> 
 <button type="button" class="btn btn-success" id="uConductor"> Editar </button>   
 </div>
-

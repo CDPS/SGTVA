@@ -69,6 +69,7 @@ h3 {
   display: table;
   width: 100%;
 }
+
 .dtabla {
 
   display: table-column;
@@ -76,7 +77,8 @@ h3 {
   margin: 0;
   padding: 0% 0%;
   width: 50%;
-
+  border-style: solid;
+  border-color: black;
  
 }
 
@@ -127,4 +129,20 @@ footer div p {
   color: #FFF;
   margin-bottom: 0px;
   text-align: center;
+}
+
+.tablaR {
+  margin-top: 10px;
+  height: 300px;
+  width: 100%; 
+}
+
+#td{
+  margin-top: 5px;
+}
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

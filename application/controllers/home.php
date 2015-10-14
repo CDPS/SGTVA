@@ -53,6 +53,21 @@ class Home extends CI_Controller {
 		echo $response;
 	}
 
+	public function vehiculosCmb(){
+
+		$this->load->model("vehiculo");
+		
+		$result = $this->vehiculo->getVehiculos();
+		$html='';
+
+		if($result!=0){
+
+			foreach ($result as $row) {
+				$html.="<option value=\"".$row->codigo."\">".$row->referencia."</option>";		
+			}
+		}
+		echo $html;
+	}
 	public function cVehiculo(){
 
 		if($_POST) {	

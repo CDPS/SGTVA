@@ -19,6 +19,7 @@ Date.prototype.getDateFormatted = function() {
 	var date = this.getDate();
 	return date < 10 ? '0' + date : date;
 };
+
 if(!String.prototype.format) {
 	String.prototype.format = function() {
 		var args = arguments;
@@ -38,6 +39,7 @@ if(!String.prototype.formatNum) {
 
 (function($) {
 
+	
 	var defaults = {
 		// Width of the calendar
 		width:              '100%',
@@ -527,6 +529,20 @@ if(!String.prototype.formatNum) {
 		return (hour == 0) ? (in_hour - (parseInt(time_start[1]) / time_split)) : in_hour;
 	};
 
+	Calendar.prototype._prueba = function() {
+		
+		var res='';
+		$.ajax({
+               url: "home/vehiculosCmb",
+               type: "POST",
+               async: false,  
+               dataType: "html",
+               success: function(respuesta){
+                	res=respuesta;
+               }
+        });
+		return res;
+	};
 	Calendar.prototype._hour = function(hour, part) {
 		var time_start = this.options.time_start.split(":");
 		var time_split = parseInt(this.options.time_split);
@@ -592,6 +608,7 @@ if(!String.prototype.formatNum) {
 	}
 
 	Calendar.prototype._day = function(week, day) {
+		
 		this._loadTemplate('month-day');
 
 		var t = {tooltip: '', cal: this};
@@ -942,6 +959,7 @@ if(!String.prototype.formatNum) {
 			self.options.day = $(this).data('cal-date');
 			self.view(view);
 		});
+
 		$('.cal-cell').dblclick(function() {
 			var view = $('[data-cal-date]', this).data('cal-view');
 			self.options.day = $('[data-cal-date]', this).data('cal-date');
