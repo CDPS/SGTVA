@@ -12,6 +12,39 @@ Class Usuario extends CI_Model {
         parent::__construct();
     }
 
+    function getUsuario(){
+
+        $this->db->select('codigo,nombre,cedula,contrasenia');
+        $this->db->from('usuarios');
+    
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+        return 0;
+    }
+
+    function verificarContra($codigo, $contrasenia) {
+
+      $this -> db -> select('codigo, nombre, cedula, contrasenia');
+      $this -> db -> from('usuarios');
+      $this -> db -> where('codigo', $codigo);
+      $this -> db -> where('contrasenia', $contrasenia);
+      $this -> db -> limit(1);
+ 
+      $query = $this -> db -> get();
+     
+      if($query -> num_rows() == 1) {
+
+        return $query->result();
+
+      } else {
+
+         return false;
+      }
+    }
+
     function login($cedula, $contrasenia) {
 
       $this -> db -> select('codigo, nombre, cedula, contrasenia');

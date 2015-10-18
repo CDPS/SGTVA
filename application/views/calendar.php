@@ -28,6 +28,7 @@
                 <li><a href="#" id="conductores">Conductores</a></li>
                 <li><a href="#" id="vehiculos">Vehiculos</a></li>
                 <li><a href="#" id="reportes">Reportes</a></li>
+                <li><a href="#" id="usuario">Usuario</a></li>
                 <li><a href="home/logout">Cerrar sesión</a></li>
             </ul>
         </div>

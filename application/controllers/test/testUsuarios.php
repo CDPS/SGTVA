@@ -11,6 +11,7 @@ class TestLogin extends CI_Controller {
     public function index() {
 
 		$this->testInsert();
+		$this->testVerificarContra();
 		$this->testLogin();
 		$this->testUpdate();
 		$this->testDelete();
@@ -94,6 +95,30 @@ class TestLogin extends CI_Controller {
         }
 
 		echo $this->unit->run($sess_array, $esperado, 'Login test');	
+	}
+
+	public function testVerificarContra(){
+
+		$codigo=1000;
+		$nombre="prueba";
+		$cedula="12345";
+		$contrasenia="12345";
+
+		$esperado=array('codigo' => $codigo,'nombre'=>$nombre,'cedula'=>$cedula,'contrasenia'=>$contrasenia);
+		$query = $this->usuario->verificarContra($codigo, $contrasenia);
+
+		$sess_array = array();
+       	foreach($query as $row) {
+       	
+         	$sess_array = array(
+           	'codigo' => $row->codigo,
+           	'nombre' => $row->nombre,
+           	'cedula' => $row->cedula,
+           	'contrasenia' => $row->contrasenia
+         	);
+        }
+
+		echo $this->unit->run($sess_array, $esperado, 'Verify user password test');	
 	}
 	 
 }

@@ -27,6 +27,19 @@ $(document).ready(function() {
         });
     });
 
+    $('#usuario').click(function(event) {
+        
+        $.ajax({
+                url: "home/usuario",
+                type: "POST",
+                dataType: "html",
+                success: function(respuesta){
+                    
+                   $('.container').html(respuesta);
+                }
+        });
+    });
+
 });
 
 function link(url, update) {

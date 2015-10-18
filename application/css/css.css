@@ -131,6 +131,11 @@ footer div p {
   text-align: center;
 }
 
+.infoUsuario {
+
+  width: 50%;
+}
+
 .tablaR {
   margin-top: 10px;
   height: 300px;

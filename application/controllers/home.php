@@ -220,5 +220,101 @@ class Home extends CI_Controller {
 		}
 	}
 
+//----------------------------------------------USUARIO---------------------------------------------//
+	
+	public function usuario(){
 
+		$this->load->model("usuario");
+		
+		$result = $this->usuario->getUsuario();
+
+		$codigo='';
+		$nombre='';
+		$cedula='';
+		$contrasenia='';
+
+		if($result!=0){
+
+			foreach ($result as $row) {
+
+				$codigo=$row->codigo;
+				$nombre=$row->nombre;
+				$cedula=$row->cedula;
+				$contrasenia=$row->contrasenia;	
+			}
+		}
+
+		$data['codigo']=$codigo;
+		$data['nombre']=$nombre;
+		$data['cedula']=$cedula;
+		$data['contrasenia']=$contrasenia;
+
+		$response = $this->load->view('admin_usuario',$data ,TRUE);
+
+		echo $response;
+	}
+
+	public function confirmarContra(){
+
+		if($_POST) {	
+		
+			$codigo = $_POST["codigo"];
+			$contrasenia =  $_POST["contrasenia"];
+			
+			if ($contrasenia != null && $codigo!=null) {
+				
+				$this->load->model("usuario");
+				$result = $this->usuario->verificarContra($codigo,$contrasenia);
+				
+				if ($result != false) {
+
+					echo "ok";
+
+				} else {
+
+					echo "fail";
+				}
+		
+			}
+		}
+	}
+
+	public function editarUsuario(){
+
+		if($_POST) {	
+				/*
+				* se obtienen dichos valores.
+				*/
+
+				$codigo = $_POST["codigo"];
+                $nombre = $_POST["nombre"];
+				$cedula =  $_POST["cedula"];
+				$contrasenia =  $_POST["contrasenia"];
+				
+				if ($nombre!= null && $cedula != null && $contrasenia != null && $codigo!=null) {
+					
+					$this->load->model("usuario");
+					$data = array('nombre'=>$nombre,'cedula'=>$cedula,'contrasenia'=>$contrasenia);
+					$result = $this->usuario->update($codigo,$data);
+					
+					if ($result == 1) {
+
+					$data['codigo']=$codigo;
+					$data['nombre']=$nombre;
+					$data['cedula']=$cedula;
+					$data['contrasenia']=$contrasenia;
+					
+					$response = $this->load->view('admin_usuario',$data ,TRUE);
+
+						echo $response;
+
+					} else {
+
+						echo "fail";
+					}
+					
+
+				}
+		}
+	}
 }
