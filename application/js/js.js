@@ -27,20 +27,22 @@ $(document).ready(function() {
         });
     });
 
-});
-
-function link(url, update) {
-
-    $.ajax({
-        url: url,
-
-        type: 'POST',
-        dataType: 'html',
-        success: function(respuesta)
-        {
-  
-                $(update).html(respuesta);
-                document.reload();
-        }
+    $('#cV').click(function(event) {
+        
+        var fecha = $('.dA').attr("id");
+        
+         $.ajax({
+                url: "home/reserva",
+                type: "POST",
+                dataType: "html",
+                data:{
+                    fecha:fecha
+                },
+                success: function(respuesta){
+                    
+                   $('.container').html(respuesta);
+                }
+        });
     });
-}
+
+});

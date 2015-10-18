@@ -221,4 +221,20 @@ class Home extends CI_Controller {
 	}
 
 
+	public function reserva(){
+
+		if($_POST) {	
+				/*
+				* se obtienen dichos valores.
+				*/
+			$fecha = $_POST["fecha"];
+			
+			$data['fecha']=$fecha;
+			$response = $this->load->view('reserva',$data ,TRUE);
+
+			echo $response;
+		}
+	}
+
+
 }

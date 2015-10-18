@@ -1,10 +1,16 @@
+<head>
+    <script src="application/js/js.js"></script> 
+</head>
 <h3 id="td">Registro de vehiculos</h3>
+
 
  <p><label for="vehiculo">Vehiculo:</label>
         <select  class="form-control" id="cmbVehiculos" placeholder="Vehiculo" name="vehiculo" required>
         <option value='0'>Vehiculos</option>
-        <%=cal._prueba()%>
+        <%=cal._getVehiculos()%>
 </select></p>
+
+<h3 id="<%=cal.getFecha()%>" class="dA"> </h3>
 
 <div class="tablaR">
 		<table class="table table-hover" id="cuerpoTR">
@@ -24,10 +30,10 @@
 					</tbody>
 		</table>
 </div>
+
 <hr>
 <div>
-<button type="button" class="btn btn-success" id="cConductor"> Crear </button> 
-<button type="button" class="btn btn-success" id="eConductor"> Eliminar </button> 
-<button type="button" class="btn btn-success" id="uConductor"> Editar </button>   
+<button type="button" class="btn btn-success" id="cV"> Crear </button> 
+<button type="button" class="btn btn-success" id="eV"> Eliminar </button>    
 </div>
 

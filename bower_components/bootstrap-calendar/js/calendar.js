@@ -529,7 +529,12 @@ if(!String.prototype.formatNum) {
 		return (hour == 0) ? (in_hour - (parseInt(time_start[1]) / time_split)) : in_hour;
 	};
 
-	Calendar.prototype._prueba = function() {
+	Calendar.prototype._getFecha = function() {
+		
+	
+	};
+
+	Calendar.prototype._getVehiculos = function() {
 		
 		var res='';
 		$.ajax({
@@ -824,6 +829,15 @@ if(!String.prototype.formatNum) {
 				$.error(this.locale.error_noview.format(this.options.view))
 		}
 		return this;
+	};
+
+	Calendar.prototype.getFecha = function() {
+		var p = this.options.position.start;
+	
+		var s = this.locale.title_day.format(p.getDay(), p.getDate(), p.getMonth()+1, p.getFullYear());
+		
+		var res = s.split(" "); 
+		return res[1]+'-' + res[2] + '-' + res[3];
 	};
 
 	Calendar.prototype.getTitle = function() {
