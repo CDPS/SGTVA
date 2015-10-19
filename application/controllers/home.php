@@ -227,12 +227,100 @@ class Home extends CI_Controller {
 				/*
 				* se obtienen dichos valores.
 				*/
-			$fecha = $_POST["fecha"];
-			
-			$data['fecha']=$fecha;
-			$response = $this->load->view('reserva',$data ,TRUE);
 
-			echo $response;
+				$this->load->model("unidad");
+		
+				$result = $this->unidad->getUnidades();
+				$unidades='';
+
+				if($result!=0){
+
+					foreach ($result as $row) {
+						$unidades.="<tr id=\"".$row->codigo."\" class=\"click\">";
+						$unidades.="<td class=\"ref\">".$row->nombre."</td>";
+						$unidades.="</tr>";		
+					}
+				}
+
+
+				$this->load->model("conductor");
+		
+				$result = $this->conductor->getConductores();
+				$conductores='';
+
+				if($result!=0){
+
+					foreach ($result as $row) {
+						$conductores.="<option value=\"".$row->codigo."\">".$row->nombre."</option>";		
+					}
+				}
+				$data['unidades']=$unidades;
+				$data['conductores']= $conductores;
+				$fecha = $_POST["fecha"];
+				$vehiculo = $_POST["vehiculo"];
+				$data['fecha']=$fecha;
+				$data['vehiculo'] = $vehiculo;
+				$response = $this->load->view('reserva',$data ,TRUE);
+
+				echo $response;
+		}
+	}
+
+	public function agregarReserva(){
+
+		if($_POST) {
+
+			  $unidad      = $_POST["unidad"];    
+			  $vehiculo    = $_POST["vehiculo"];
+			  $conductor   = $_POST["conductor"];
+
+			  $solicitante = $_POST["solicitante"];
+
+			  $cedulaR     = $_POST["cedulaR"];
+			  $descripcion = $_POST["descripcion"];
+
+			  $salida      = $_POST["salida"];
+			  $destino     = $_POST["destino"];
+
+			  $horaS       = $_POST["horaS"];
+			  $minutosS    = $_POST["minutosS"];
+			  $apS         = $_POST["apS"];
+
+			  $horaL       = $_POST["horaL"];
+			  $minutosL    = $_POST["minutosL"];
+			  $apL         = $_POST["apL"];
+
+			  $fechaActual = $_POST["fechaActual"];
+			  
+			  $responsable = $_POST["rname"];
+
+
+			  $this->load->model("solicitante");
+			  $data = array('nombre'=>$solicitante);
+			  $result = $this->solicitante->insert($data);
+
+
+			  $this->load->model("actividad");
+			  $data = array('nombreResponsable'=>$responsable,'cedulaResponsable'=>$cedulaR,'descripcion'=>$descripcion);
+			  $result = $this->actividad->insert($data);
+
+
+			  if($apS==1){
+			  	$horaS+=12;
+			  }
+			  $dateSalida=$fechaActual." ".$horaS.":".$minutosS.":00";
+			  
+			  if($apL==1){
+			  	$horaL+=12;
+			  }
+			  $dateLlegada= $fechaActual." ".$horaL.":".$minutosL.":00";
+
+			  $this->load->model("viaje");
+			  $data = array('fechaSalida'=>$dateSalida,'fechaLlegada'=>$dateLlegada, 'direccionOrigen'=>$salida, 'direccionDestino'=>$destino);
+			  $result = $this->viaje->insert($data);
+
+
+			  echo date_format($dateSalida,"Y/m/d H:iP");		
 		}
 	}
 

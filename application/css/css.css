@@ -53,7 +53,7 @@ h3 {
 .container{
 
 	display: table-column;
-	width: 79%;
+	width: 84%;
 	margin-top: 1px;
 	margin-right: 1px;
 	margin-left: 20px;
@@ -153,11 +153,11 @@ hr {
 
 fieldset.contenedorReserva {
     border: 1px groove #ddd !important;
-    padding: 0 1.4em 1.4em 1.4em !important;
+    padding: 0 1.4em 1.4em 0.8em !important;
     margin: 0 0 1.5em 0 !important;
     -webkit-box-shadow:  0px 0px 0px 0px #000;
             box-shadow:  0px 0px 0px 0px #000;
-    height: 500px;
+    height: 690px;
     display: table;
 }
 
@@ -176,7 +176,7 @@ legend.contenedorReserva{
     margin: 0;
     padding: 0% 0%;
     width: 39%;
-    height: 100%;
+    height: 83%;
 }
 
 fieldset.contenedorSolicitate {
@@ -198,12 +198,12 @@ legend.contenedorSolicitate{
 .cActividad{
 
   display: table-column;
-  width: 30%;
+  width: 35%;
   margin-top: 1px;
   margin-right: 1px;
   margin-left: 10px;
   float: left;
-  height: 100%;
+  height: 83%;
 }
 
 fieldset.contenedorActividad {
@@ -220,4 +220,120 @@ legend.contenedorActividad{
     padding:0 10px; /* To give a bit of padding on the left and right */
     border-bottom:none;
     color: #20912D;
+}
+
+fieldset.contenedorResponsable {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+    height: 43%;
+}
+
+legend.contenedorResponsable{
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+    color: #20912D;
+}
+
+#lDescripcion{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px; 
+   color: #20912D;
+}
+
+.cHoras{
+
+  display: table-column;
+  width: 23%;
+  margin-top: 1px;
+  margin-right: 1px;
+  margin-left: 10px;
+  float: left;
+  height: 83%;
+}
+
+
+fieldset.contenedorSitio {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+    height: 48%;
+}
+
+legend.contenedorSitio{
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+    color: #20912D;
+}
+
+fieldset.contenedorHora {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+    height: 48%;
+}
+
+legend.contenedorHora{
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+    color: #20912D;
+}
+
+
+#unidades{
+  overflow: auto;
+  height: 310px;
+}
+#destinol{
+  margin-top: 35px; 
+}
+
+#cedulal{
+  margin-top: 30px; 
+}
+
+#sH, #sL{
+  width: 100%;
+}
+
+#horaS, #minutosS,#horaL, #minutosL{
+  width: 40px;
+  margin-right: 0px;
+  display: inline;
+}
+
+ #cmbHoraS, #cmbHoraL{
+   display: inline;
+  margin-left: 10px;
+  width: 70px;
+}
+
+.contenedorHoraL{
+  margin-top: 30px;
+}
+
+#cRV{
+    
+    margin-top: 25px;
+    width: 150px;
+
+}
+
+#contenedorBotones{
+  text-align: center;
+}
+
+.unidadE, .vehiculoE, .fechaActual{
+  visibility: hidden;
+  width: 0%;
+  height: 0%;
 }

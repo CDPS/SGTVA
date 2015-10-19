@@ -27,16 +27,17 @@ $(document).ready(function() {
         });
     });
 
-    $('#cV').click(function(event) {
+    $('#cR').click(function(event) {
         
         var fecha = $('.dA').attr("id");
-        
+        var vehiculo= $( "#cmbVehiculos" ).val();
          $.ajax({
                 url: "home/reserva",
                 type: "POST",
                 dataType: "html",
                 data:{
-                    fecha:fecha
+                    fecha:fecha,
+                    vehiculo:vehiculo
                 },
                 success: function(respuesta){
                     

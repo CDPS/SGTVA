@@ -154,7 +154,6 @@
         <p>Julio Cesar Garcia Sabogal</p>
         <p>Fabio Stiven Oquendo Soler</p>
         <p>Cristian Daniel Palechor Sepulveda</p>
-
     </div>
     
 </footer>

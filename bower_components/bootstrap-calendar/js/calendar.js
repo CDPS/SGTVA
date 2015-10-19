@@ -837,7 +837,7 @@ if(!String.prototype.formatNum) {
 		var s = this.locale.title_day.format(p.getDay(), p.getDate(), p.getMonth()+1, p.getFullYear());
 		
 		var res = s.split(" "); 
-		return res[1]+'-' + res[2] + '-' + res[3];
+		return res[3]+'-'+ res[2]+'-'+res[1];
 	};
 
 	Calendar.prototype.getTitle = function() {
