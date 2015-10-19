@@ -27,14 +27,21 @@ $(document).ready(function() {
         });
     });
 
-<<<<<<< HEAD
+
     $('#usuario').click(function(event) {
         
         $.ajax({
                 url: "home/usuario",
                 type: "POST",
                 dataType: "html",
-=======
+                success: function(respuesta){
+                    
+                   $('.container').html(respuesta);
+                }
+        });
+    });       
+
+
     $('#cR').click(function(event) {
         
         var fecha = $('.dA').attr("id");
@@ -47,19 +54,11 @@ $(document).ready(function() {
                     fecha:fecha,
                     vehiculo:vehiculo
                 },
->>>>>>> refs/remotes/origin/agregarReserva
                 success: function(respuesta){
-                    
-                   $('.container').html(respuesta);
+                     $('.container').html(respuesta);
                 }
-        });
+           });
     });
-<<<<<<< HEAD
-
-});
-=======
->>>>>>> refs/remotes/origin/agregarReserva
-
 
     $('#cmbVehiculos').on('change', function() {
        

@@ -224,7 +224,7 @@ class Home extends CI_Controller {
 	
 	public function usuario(){
 
-<<<<<<< HEAD
+
 		$this->load->model("usuario");
 		
 		$result = $this->usuario->getUsuario();
@@ -318,7 +318,6 @@ class Home extends CI_Controller {
 				}
 		}
 	}
-=======
 	public function reserva(){
 
 		if($_POST) {	
@@ -467,7 +466,5 @@ class Home extends CI_Controller {
 			echo $html;
 		}
 	}
-
-
->>>>>>> refs/remotes/origin/agregarReserva
+	
 }
