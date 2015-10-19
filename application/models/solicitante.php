@@ -16,15 +16,11 @@ class Solicitante extends CI_Model {
         return 0;
     }
 
-    function findById($id){
+    function getLastInsert(){
 
+      $query =  $this->db->query('SELECT MAX(codigo) AS id FROM solicitantes');
 
-        $this->db->select('codigo,referencia,placa,capacidadMax');
-        $this->db->from('vehiculos');
-        $this->db->where('codigo', $id);
-    
-        $query = $this->db->get();
-        if($query->num_rows() == 1 )
+        if($query->num_rows() > 0 )
         {
             return $query->result();
         }

@@ -22,11 +22,8 @@ $(document).ready(function() {
 
 	$(".click").click(function(e) {
         var data = $(this).attr("id");
-
         var nom= $("#"+data+" .ref").html();
-
         $(".unidadE").attr("id",data);
-         
         $("#buscador").val(nom);
          jQuery("#tablaUnidades tbody>tr").hide();
 	     jQuery("#tablaUnidades td:contiene-palabra('" + nom + "')").parent("tr").show();
@@ -84,7 +81,7 @@ $(document).ready(function() {
 			    },
                 success: function(respuesta){
                     
-                   alert("Todo ha acabado");
+                   location.href ="/SGTVA/home";
                 }
         });
     });

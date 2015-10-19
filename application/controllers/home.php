@@ -318,9 +318,25 @@ class Home extends CI_Controller {
 			  $this->load->model("viaje");
 			  $data = array('fechaSalida'=>$dateSalida,'fechaLlegada'=>$dateLlegada, 'direccionOrigen'=>$salida, 'direccionDestino'=>$destino);
 			  $result = $this->viaje->insert($data);
+			
+
+			  $query = $this->actividad->getLastInsert();
+			  $respuesta= $query[0];
+			  $idActividad= $respuesta->id;
+		 
+		 	  $query = $this->solicitante->getLastInsert();
+			  $respuesta= $query[0];
+			  $idSolicitante= $respuesta->id;
+
+			  $query = $this->viaje->getLastInsert();
+			  $respuesta= $query[0];
+			  $idViaje= $respuesta->id;
 
 
-			  echo date_format($dateSalida,"Y/m/d H:iP");		
+			  $this->load->model("registro");
+			  $data = array('fechaSolicitud'=>$fechaActual,'codigoViaje'=> $idViaje,'codigoActividad'=>$idActividad,'codigoSolicitante'=>$idSolicitante,'codigoUnidad'=>$unidad,'codigoConductor'=>$conductor,'codigoVehiculo'=>$vehiculo );
+			  $result = $this->registro->insert($data);
+			  
 		}
 	}
 

@@ -16,4 +16,15 @@ class Actividad extends CI_Model {
         return 0;
     }
 
+    function getLastInsert(){
+
+         $query = $this->db->query('SELECT MAX(codigo) AS id FROM actividades');
+        
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+        return 0;
+    }
+
 }
