@@ -49,7 +49,7 @@
                             <button class="btn btn-warning" data-calendar-view="day" id="dia">Día</button>
                         </div>
                     </div>
-                    <h3 id="fecha"></h3>
+                    <h3 id="ui"></h3>
                 </div>     
             </div>
             <div class="row">
@@ -155,7 +155,6 @@
         <p>Julio Cesar Garcia Sabogal</p>
         <p>Fabio Stiven Oquendo Soler</p>
         <p>Cristian Daniel Palechor Sepulveda</p>
-
     </div>
     
 </footer>
