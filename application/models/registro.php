@@ -17,14 +17,14 @@ class Registro extends CI_Model {
     }
 
 
-    function  getRegistros($fecha){
+    function  getRegistros($fecha,$vehiculo){
 
-        $query = $this->db->query("SELECT c.nombre, v.fechaSalida, v.fechaLlegada, a.descripcion, v.direccionOrigen,s.nombre
+        $query = $this->db->query("SELECT c.nombre, v.fechaSalida, v.fechaLlegada, a.descripcion, v.direccionOrigen, s.nombre as solicitante ,r.codigo
                                    FROM  registros r JOIN conductores c on r.codigoConductor=c.codigo
                                    JOIN  viajes v on r.codigoViaje= v.codigo
-                                   JOIN  actividades a on r.codigoActividad= a.condigo
-                                   JOIN  solicitantes s on r.condigoSolicitante = s.codigo
-                                   WHERE v.fechaSalida='$fecha'");
+                                   JOIN  actividades a on r.codigoActividad= a.codigo
+                                   JOIN  solicitantes s on r.codigoSolicitante = s.codigo
+                                   WHERE r.codigoVehiculo =$vehiculo and r.fechaSolicitud= '$fecha' ");
         
         if($query->num_rows() > 0 )
         {

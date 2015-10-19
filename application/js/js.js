@@ -46,4 +46,26 @@ $(document).ready(function() {
         });
     });
 
+
+    $('#cmbVehiculos').on('change', function() {
+       
+        var vehiculo =$('#cmbVehiculos').val();
+        var fecha = $('.dA').attr("id");
+
+        $.ajax({
+                url: "home/getReservas",
+                type: "POST",
+                dataType: "html",
+                data:{
+                    fecha:fecha,
+                    vehiculo:vehiculo
+                },
+                success: function(respuesta){
+                    
+                   $('#cuerpoTR tbody').html(respuesta);
+                }
+        });
+    });
+    
+
 });

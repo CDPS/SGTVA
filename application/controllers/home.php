@@ -340,5 +340,35 @@ class Home extends CI_Controller {
 		}
 	}
 
+	public function getReservas(){
+
+		if($_POST) {	
+
+			$vehiculo = $_POST["vehiculo"];
+			$fecha    = $_POST["fecha"];
+
+			$this->load->model("registro");
+		
+			$result = $this->registro->getRegistros($fecha,$vehiculo);
+			$html='';
+
+			if($result!=0){
+
+				foreach ($result as $row) {
+					$html.="<tr id=\"".$row->codigo."\" class=\"click\">";
+					$html.="<td class=\"ref\">".$row->nombre."</td>";
+					$html.="<td class=\"fechaSalida\">".$row->fechaSalida."</td>";
+					$html.="<td class=\"fechaLlegada\">".$row->fechaLlegada."</td>";
+					$html.="<td class=\"descripcion\">".$row->descripcion."</td>";
+					$html.="<td class=\"direccionO\">".$row->direccionOrigen."</td>";
+					$html.="<td class=\"solicitante\">".$row->solicitante."</td>";
+					$html.="</tr>";		
+				}
+			}
+			
+			echo $html;
+		}
+	}
+
 
 }
