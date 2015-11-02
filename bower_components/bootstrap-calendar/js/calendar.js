@@ -529,11 +529,6 @@ if(!String.prototype.formatNum) {
 		return (hour == 0) ? (in_hour - (parseInt(time_start[1]) / time_split)) : in_hour;
 	};
 
-	Calendar.prototype._getFecha = function() {
-		
-	
-	};
-
 	Calendar.prototype._getVehiculos = function() {
 		
 		var res='';
@@ -832,12 +827,16 @@ if(!String.prototype.formatNum) {
 	};
 
 	Calendar.prototype.getFecha = function() {
-		var p = this.options.position.start;
+		var p= this.options.position.start;
 	
-		var s = this.locale.title_day.format(p.getDay(), p.getDate(), p.getMonth()+1, p.getFullYear());
+		var list = this.locale.title_day.format(p.getDay(), p.getDate(), p.getMonth()+1, p.getFullYear());
 		
-		var res = s.split(" "); 
-		return res[3]+'-'+ res[2]+'-'+res[1];
+		var result = list.split(" ");
+
+		if(result[1].length==1){
+			result[1]= "0"+result[1];
+		} 
+		return result[3]+'-'+ result[2]+'-'+result[1];
 	};
 
 	Calendar.prototype.getTitle = function() {
@@ -964,20 +963,114 @@ if(!String.prototype.formatNum) {
 	};
 
 	Calendar.prototype._update = function() {
+		
+		 
 		var self = this;
 
+
+		var date = new Date();
+    	var dd = date.getDate();
+    	var mm = date.getMonth()+1; 
+    	var yyyy = date.getFullYear();
+
+    	if(dd<10){
+       		 dd='0'+dd
+    	} 
+   		if(mm<10){
+        	mm='0'+mm
+   		}	 
+
+    	var today = [yyyy,mm,dd];
+    
 		$('*[data-toggle="tooltip"]').tooltip({container: 'body'});
 
 		$('*[data-cal-date]').click(function() {
-			var view = $(this).data('cal-view');
-			self.options.day = $(this).data('cal-date');
-			self.view(view);
+
+			var  listSelected= $(this).data('cal-date');
+
+			var  view = $(this).data('cal-view');
+
+			var chooseDate = listSelected.split("-");
+
+			if(chooseDate[0]>today[0]){
+				
+				var view = $(this).data('cal-view');
+				self.options.day = $(this).data('cal-date');
+				self.view(view);
+			} else {
+
+				if (chooseDate[0]==today[0]){
+						
+
+						if(view=="month" && chooseDate[1]==today[1]){
+							var view = $(this).data('cal-view');
+							self.options.day = $(this).data('cal-date');
+							self.view(view);
+						}else{
+
+							if(chooseDate[1]>today[1]){
+								var view = $(this).data('cal-view');
+								self.options.day = $(this).data('cal-date');
+								self.view(view);
+							}else{
+
+								if(chooseDate[1]==today[1]){
+
+									if(chooseDate[2]>=today[2]){
+										var view = $(this).data('cal-view');
+										self.options.day = $(this).data('cal-date');
+										self.view(view);
+									}
+								}
+							}
+						}	
+				}
+			}
 		});
 
 		$('.cal-cell').dblclick(function() {
-			var view = $('[data-cal-date]', this).data('cal-view');
-			self.options.day = $('[data-cal-date]', this).data('cal-date');
-			self.view(view);
+			
+
+			var  listSelected= $('[data-cal-date]',this).data('cal-date');
+
+			var  view = $('[data-cal-date]',this).data('cal-view');
+
+			var chooseDate = listSelected.split("-");
+
+			if(chooseDate[0]>today[0]){
+				
+				var view = $('[data-cal-date]', this).data('cal-view');
+				self.options.day = $('[data-cal-date]', this).data('cal-date');
+				self.view(view);
+			} else {
+
+				if (chooseDate[0]==today[0]){
+						
+
+						if(view=="month" && chooseDate[1]==today[1]){
+							var view = $('[data-cal-date]', this).data('cal-view');
+							self.options.day = $('[data-cal-date]', this).data('cal-date');
+							self.view(view);
+						}else{
+
+							if(chooseDate[1]>today[1]){
+								var view = $('[data-cal-date]', this).data('cal-view');
+								self.options.day = $('[data-cal-date]', this).data('cal-date');
+								self.view(view);
+							}else{
+
+								if(chooseDate[1]==today[1]){
+
+									if(chooseDate[2]>=today[2]){
+											var view = $('[data-cal-date]', this).data('cal-view');
+											self.options.day = $('[data-cal-date]', this).data('cal-date');
+											self.view(view);
+									}
+								}
+							}
+						}	
+				}
+			}
 		});
 
 		this['_update_' + this.options.view]();

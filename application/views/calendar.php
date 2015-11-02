@@ -19,7 +19,6 @@
     <header>
         <h1><img src="http://www.uniquindio.edu.co/info/uniquindio/media/bloque2778464"></h1>
     </header>   
-
     <div class="main">
         <div class="navegacion">
             <ul class="nav nav-pills nav-stacked">
@@ -123,6 +122,7 @@
             var $this = $(this);
             $this.click(function() 
             {
+               
                 calendar.view($this.data('calendar-view'));
             });
         });
