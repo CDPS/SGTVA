@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="CodeIgniter Application Test Suite" tests="12" assertions="12" failures="0" errors="0" time="0.504288">
-    <testsuite name="Welcome_test" file="C:\xampp\htdocs\SGTVA\application\tests\controllers\Welcome_test.php" fullPackage="Welcome" tests="1" assertions="1" failures="0" errors="0" time="0.002068">
-      <testcase name="test" class="Welcome_test" file="C:\xampp\htdocs\SGTVA\application\tests\controllers\Welcome_test.php" line="13" assertions="1" time="0.002068"/>
+  <testsuite name="CodeIgniter Application Test Suite" tests="12" assertions="12" failures="0" errors="0" time="0.892414">
+    <testsuite name="Welcome_test" file="C:\xampp\htdocs\SGTVA\application\tests\controllers\Welcome_test.php" fullPackage="Welcome" tests="1" assertions="1" failures="0" errors="0" time="0.002162">
+      <testcase name="test" class="Welcome_test" file="C:\xampp\htdocs\SGTVA\application\tests\controllers\Welcome_test.php" line="13" assertions="1" time="0.002162"/>
     </testsuite>
     <testsuite name="Conductor_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\conductores_test.php" fullPackage="Conductor" tests="3" assertions="3" failures="0" errors="0" time="0.180548">
       <testcase name="testInsert" class="Conductor_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\conductores_test.php" line="12" assertions="1" time="0.084537"/>
