@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CodeIgniter Application Test Suite" tests="12" assertions="12" failures="0" errors="0" time="0.843131">
+    <testsuite name="Welcome_test" file="C:\xampp\htdocs\SGTVA\application\tests\controllers\Welcome_test.php" fullPackage="Welcome" tests="1" assertions="1" failures="0" errors="0" time="0.002598">
+      <testcase name="test" class="Welcome_test" file="C:\xampp\htdocs\SGTVA\application\tests\controllers\Welcome_test.php" line="13" assertions="1" time="0.002598"/>
+    </testsuite>
+    <testsuite name="Conductor_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\conductores_test.php" fullPackage="Conductor" tests="3" assertions="3" failures="0" errors="0" time="0.204333">
+      <testcase name="testInsert" class="Conductor_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\conductores_test.php" line="12" assertions="1" time="0.124550"/>
+      <testcase name="testUpdate" class="Conductor_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\conductores_test.php" line="32" assertions="1" time="0.052129"/>
+      <testcase name="testDelete" class="Conductor_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\conductores_test.php" line="52" assertions="1" time="0.027654"/>
+    </testsuite>
+    <testsuite name="Usuario_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\usuarios_test.php" fullPackage="Usuario" tests="5" assertions="5" failures="0" errors="0" time="0.243189">
+      <testcase name="testInsert" class="Usuario_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\usuarios_test.php" line="13" assertions="1" time="0.067039"/>
+      <testcase name="testVerificarContra" class="Usuario_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\usuarios_test.php" line="38" assertions="1" time="0.007076"/>
+      <testcase name="testLogin" class="Usuario_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\usuarios_test.php" line="63" assertions="1" time="0.006755"/>
+      <testcase name="testUpdate" class="Usuario_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\usuarios_test.php" line="89" assertions="1" time="0.118930"/>
+      <testcase name="testDelete" class="Usuario_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\usuarios_test.php" line="113" assertions="1" time="0.043389"/>
+    </testsuite>
+    <testsuite name="Vehiculo_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\vehiculos_test.php" fullPackage="Vehiculo" tests="3" assertions="3" failures="0" errors="0" time="0.393011">
+      <testcase name="testInsert" class="Vehiculo_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\vehiculos_test.php" line="13" assertions="1" time="0.211061"/>
+      <testcase name="testUpdate" class="Vehiculo_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\vehiculos_test.php" line="36" assertions="1" time="0.099561"/>
+      <testcase name="testDelete" class="Vehiculo_test" file="C:\xampp\htdocs\SGTVA\application\tests\models\vehiculos_test.php" line="57" assertions="1" time="0.082389"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

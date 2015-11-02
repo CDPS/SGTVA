@@ -27,20 +27,58 @@ $(document).ready(function() {
         });
     });
 
-});
 
-function link(url, update) {
+    $('#usuario').click(function(event) {
+        
+        $.ajax({
+                url: "home/usuario",
+                type: "POST",
+                dataType: "html",
+                success: function(respuesta){
+                    
+                   $('.container').html(respuesta);
+                }
+        });
+    });       
 
-    $.ajax({
-        url: url,
 
-        type: 'POST',
-        dataType: 'html',
-        success: function(respuesta)
-        {
-  
-                $(update).html(respuesta);
-                document.reload();
-        }
+    $('#cR').click(function(event) {
+        
+        var fecha = $('.dA').attr("id");
+        var vehiculo= $( "#cmbVehiculos" ).val();
+         $.ajax({
+                url: "home/reserva",
+                type: "POST",
+                dataType: "html",
+                data:{
+                    fecha:fecha,
+                    vehiculo:vehiculo
+                },
+                success: function(respuesta){
+                     $('.container').html(respuesta);
+                }
+           });
     });
-}
+
+    $('#cmbVehiculos').on('change', function() {
+       
+        var vehiculo =$('#cmbVehiculos').val();
+        var fecha = $('.dA').attr("id");
+
+        $.ajax({
+                url: "home/getReservas",
+                type: "POST",
+                dataType: "html",
+                data:{
+                    fecha:fecha,
+                    vehiculo:vehiculo
+                },
+                success: function(respuesta){
+                    
+                   $('#cuerpoTR tbody').html(respuesta);
+                }
+        });
+    });
+    
+
+});

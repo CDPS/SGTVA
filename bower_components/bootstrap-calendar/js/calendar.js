@@ -19,6 +19,7 @@ Date.prototype.getDateFormatted = function() {
 	var date = this.getDate();
 	return date < 10 ? '0' + date : date;
 };
+
 if(!String.prototype.format) {
 	String.prototype.format = function() {
 		var args = arguments;
@@ -38,6 +39,7 @@ if(!String.prototype.formatNum) {
 
 (function($) {
 
+	
 	var defaults = {
 		// Width of the calendar
 		width:              '100%',
@@ -527,6 +529,20 @@ if(!String.prototype.formatNum) {
 		return (hour == 0) ? (in_hour - (parseInt(time_start[1]) / time_split)) : in_hour;
 	};
 
+	Calendar.prototype._getVehiculos = function() {
+		
+		var res='';
+		$.ajax({
+               url: "home/vehiculosCmb",
+               type: "POST",
+               async: false,  
+               dataType: "html",
+               success: function(respuesta){
+                	res=respuesta;
+               }
+        });
+		return res;
+	};
 	Calendar.prototype._hour = function(hour, part) {
 		var time_start = this.options.time_start.split(":");
 		var time_split = parseInt(this.options.time_split);
@@ -592,6 +608,7 @@ if(!String.prototype.formatNum) {
 	}
 
 	Calendar.prototype._day = function(week, day) {
+		
 		this._loadTemplate('month-day');
 
 		var t = {tooltip: '', cal: this};
@@ -809,6 +826,19 @@ if(!String.prototype.formatNum) {
 		return this;
 	};
 
+	Calendar.prototype.getFecha = function() {
+		var p= this.options.position.start;
+	
+		var list = this.locale.title_day.format(p.getDay(), p.getDate(), p.getMonth()+1, p.getFullYear());
+		
+		var result = list.split(" ");
+
+		if(result[1].length==1){
+			result[1]= "0"+result[1];
+		} 
+		return result[3]+'-'+ result[2]+'-'+result[1];
+	};
+
 	Calendar.prototype.getTitle = function() {
 		var p = this.options.position.start;
 		switch(this.options.view) {
@@ -933,19 +963,114 @@ if(!String.prototype.formatNum) {
 	};
 
 	Calendar.prototype._update = function() {
+		
+		 
 		var self = this;
 
+
+		var date = new Date();
+    	var dd = date.getDate();
+    	var mm = date.getMonth()+1; 
+    	var yyyy = date.getFullYear();
+
+    	if(dd<10){
+       		 dd='0'+dd
+    	} 
+   		if(mm<10){
+        	mm='0'+mm
+   		}	 
+
+    	var today = [yyyy,mm,dd];
+    
 		$('*[data-toggle="tooltip"]').tooltip({container: 'body'});
 
 		$('*[data-cal-date]').click(function() {
-			var view = $(this).data('cal-view');
-			self.options.day = $(this).data('cal-date');
-			self.view(view);
+
+			var  listSelected= $(this).data('cal-date');
+
+			var  view = $(this).data('cal-view');
+
+			var chooseDate = listSelected.split("-");
+
+			if(chooseDate[0]>today[0]){
+				
+				var view = $(this).data('cal-view');
+				self.options.day = $(this).data('cal-date');
+				self.view(view);
+			} else {
+
+				if (chooseDate[0]==today[0]){
+						
+
+						if(view=="month" && chooseDate[1]==today[1]){
+							var view = $(this).data('cal-view');
+							self.options.day = $(this).data('cal-date');
+							self.view(view);
+						}else{
+
+							if(chooseDate[1]>today[1]){
+								var view = $(this).data('cal-view');
+								self.options.day = $(this).data('cal-date');
+								self.view(view);
+							}else{
+
+								if(chooseDate[1]==today[1]){
+
+									if(chooseDate[2]>=today[2]){
+										var view = $(this).data('cal-view');
+										self.options.day = $(this).data('cal-date');
+										self.view(view);
+									}
+								}
+							}
+						}	
+				}
+			}
 		});
+
 		$('.cal-cell').dblclick(function() {
-			var view = $('[data-cal-date]', this).data('cal-view');
-			self.options.day = $('[data-cal-date]', this).data('cal-date');
-			self.view(view);
+			
+
+			var  listSelected= $('[data-cal-date]',this).data('cal-date');
+
+			var  view = $('[data-cal-date]',this).data('cal-view');
+
+			var chooseDate = listSelected.split("-");
+
+			if(chooseDate[0]>today[0]){
+				
+				var view = $('[data-cal-date]', this).data('cal-view');
+				self.options.day = $('[data-cal-date]', this).data('cal-date');
+				self.view(view);
+			} else {
+
+				if (chooseDate[0]==today[0]){
+						
+
+						if(view=="month" && chooseDate[1]==today[1]){
+							var view = $('[data-cal-date]', this).data('cal-view');
+							self.options.day = $('[data-cal-date]', this).data('cal-date');
+							self.view(view);
+						}else{
+
+							if(chooseDate[1]>today[1]){
+								var view = $('[data-cal-date]', this).data('cal-view');
+								self.options.day = $('[data-cal-date]', this).data('cal-date');
+								self.view(view);
+							}else{
+
+								if(chooseDate[1]==today[1]){
+
+									if(chooseDate[2]>=today[2]){
+											var view = $('[data-cal-date]', this).data('cal-view');
+											self.options.day = $('[data-cal-date]', this).data('cal-date');
+											self.view(view);
+									}
+								}
+							}
+						}	
+				}
+			}
 		});
 
 		this['_update_' + this.options.view]();

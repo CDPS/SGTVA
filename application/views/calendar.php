@@ -6,13 +6,12 @@
     <link rel="stylesheet" type="text/css" href="application/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="application/css/css.css">
     <link rel="stylesheet" href="bower_components/bootstrap-calendar/css/calendar.css">
+
     <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="application/js/jquery-1.11.2.js"></script>
     <script type="text/javascript" src="application/js/js.js"></script>
     
     <script src="application/js/bootstrap.min.js"></script>
-  
-
     <script type="text/javascript" src="bower_components/bootstrap-calendar/js/language/es-ES.js"></script>
 </head>
 <body>
@@ -20,7 +19,6 @@
     <header>
         <h1><img src="http://www.uniquindio.edu.co/info/uniquindio/media/bloque2778464"></h1>
     </header>   
-
     <div class="main">
         <div class="navegacion">
             <ul class="nav nav-pills nav-stacked">
@@ -29,6 +27,7 @@
                 <li><a href="#" id="conductores">Conductores</a></li>
                 <li><a href="#" id="vehiculos">Vehiculos</a></li>
                 <li><a href="#" id="reportes">Reportes</a></li>
+                <li><a href="#" id="usuario">Usuario</a></li>
                 <li><a href="home/logout">Cerrar sesión</a></li>
             </ul>
         </div>
@@ -46,10 +45,10 @@
                             <button class="btn btn-warning" data-calendar-view="year">Año</button>
                             <button class="btn btn-warning active" data-calendar-view="month">Mes</button>
                             <button class="btn btn-warning" data-calendar-view="week">Semana</button>
-                            <button class="btn btn-warning" data-calendar-view="day">Día</button>
+                            <button class="btn btn-warning" data-calendar-view="day" id="dia">Día</button>
                         </div>
                     </div>
-                    <h3></h3>
+                    <h3 id="ui"></h3>
                 </div>     
             </div>
             <div class="row">
@@ -98,8 +97,9 @@
             onAfterViewLoad: function(view) 
             {
                 $('.page-header h3').text(this.getTitle());
-                $('.btn-group button').removeClass('active');
+                $('.btn-group button').removeClass('active');               
                 $('button[data-calendar-view="' + view + '"]').addClass('active');
+                
             },
             classes: {
                 months: {
@@ -118,12 +118,15 @@
         });
         $('.btn-group button[data-calendar-view]').each(function() 
         {
+
             var $this = $(this);
             $this.click(function() 
             {
+               
                 calendar.view($this.data('calendar-view'));
             });
         });
+
         $('#first_day').change(function()
         {
             var value = $(this).val();
@@ -148,12 +151,10 @@
 <footer>
     
     <div>
-
         <p>Copyright &copy; 2015</p>
         <p>Julio Cesar Garcia Sabogal</p>
         <p>Fabio Stiven Oquendo Soler</p>
         <p>Cristian Daniel Palechor Sepulveda</p>
-
     </div>
     
 </footer>

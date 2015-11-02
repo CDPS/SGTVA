@@ -53,6 +53,21 @@ class Home extends CI_Controller {
 		echo $response;
 	}
 
+	public function vehiculosCmb(){
+
+		$this->load->model("vehiculo");
+		
+		$result = $this->vehiculo->getVehiculos();
+		$html='';
+
+		if($result!=0){
+
+			foreach ($result as $row) {
+				$html.="<option value=\"".$row->codigo."\">".$row->referencia."</option>";		
+			}
+		}
+		echo $html;
+	}
 	public function cVehiculo(){
 
 		if($_POST) {	
@@ -205,5 +220,251 @@ class Home extends CI_Controller {
 		}
 	}
 
+//----------------------------------------------USUARIO---------------------------------------------//
+	
+	public function usuario(){
 
+
+		$this->load->model("usuario");
+		
+		$result = $this->usuario->getUsuario();
+
+		$codigo='';
+		$nombre='';
+		$cedula='';
+		$contrasenia='';
+
+		if($result!=0){
+
+			foreach ($result as $row) {
+
+				$codigo=$row->codigo;
+				$nombre=$row->nombre;
+				$cedula=$row->cedula;
+				$contrasenia=$row->contrasenia;	
+			}
+		}
+
+		$data['codigo']=$codigo;
+		$data['nombre']=$nombre;
+		$data['cedula']=$cedula;
+		$data['contrasenia']=$contrasenia;
+
+		$response = $this->load->view('admin_usuario',$data ,TRUE);
+
+		echo $response;
+	}
+
+	public function confirmarContra(){
+
+		if($_POST) {	
+		
+			$codigo = $_POST["codigo"];
+			$contrasenia =  $_POST["contrasenia"];
+			
+			if ($contrasenia != null && $codigo!=null) {
+				
+				$this->load->model("usuario");
+				$result = $this->usuario->verificarContra($codigo,$contrasenia);
+				
+				if ($result != false) {
+
+					echo "ok";
+
+				} else {
+
+					echo "fail";
+				}
+		
+			}
+		}
+	}
+
+	public function editarUsuario(){
+
+		if($_POST) {	
+				/*
+				* se obtienen dichos valores.
+				*/
+
+				$codigo = $_POST["codigo"];
+                $nombre = $_POST["nombre"];
+				$cedula =  $_POST["cedula"];
+				$contrasenia =  $_POST["contrasenia"];
+				
+				if ($nombre!= null && $cedula != null && $contrasenia != null && $codigo!=null) {
+					
+					$this->load->model("usuario");
+					$data = array('nombre'=>$nombre,'cedula'=>$cedula,'contrasenia'=>$contrasenia);
+					$result = $this->usuario->update($codigo,$data);
+					
+					if ($result == 1) {
+
+					$data['codigo']=$codigo;
+					$data['nombre']=$nombre;
+					$data['cedula']=$cedula;
+					$data['contrasenia']=$contrasenia;
+					
+					$response = $this->load->view('admin_usuario',$data ,TRUE);
+
+						echo $response;
+
+					} else {
+
+						echo "fail";
+					}
+					
+
+				}
+		}
+	}
+	public function reserva(){
+
+		if($_POST) {	
+				/*
+				* se obtienen dichos valores.
+				*/
+
+				$this->load->model("unidad");
+		
+				$result = $this->unidad->getUnidades();
+				$unidades='';
+
+				if($result!=0){
+
+					foreach ($result as $row) {
+						$unidades.="<tr id=\"".$row->codigo."\" class=\"click\">";
+						$unidades.="<td class=\"ref\">".$row->nombre."</td>";
+						$unidades.="</tr>";		
+					}
+				}
+
+
+				$this->load->model("conductor");
+		
+				$result = $this->conductor->getConductores();
+				$conductores='';
+
+				if($result!=0){
+
+					foreach ($result as $row) {
+						$conductores.="<option value=\"".$row->codigo."\">".$row->nombre."</option>";		
+					}
+				}
+				$data['unidades']=$unidades;
+				$data['conductores']= $conductores;
+				$fecha = $_POST["fecha"];
+				$vehiculo = $_POST["vehiculo"];
+				$data['fecha']=$fecha;
+				$data['vehiculo'] = $vehiculo;
+				$response = $this->load->view('reserva',$data ,TRUE);
+
+				echo $response;
+		}
+	}
+
+	public function agregarReserva(){
+
+		if($_POST) {
+
+			  $unidad      = $_POST["unidad"];    
+			  $vehiculo    = $_POST["vehiculo"];
+			  $conductor   = $_POST["conductor"];
+
+			  $solicitante = $_POST["solicitante"];
+
+			  $cedulaR     = $_POST["cedulaR"];
+			  $descripcion = $_POST["descripcion"];
+
+			  $salida      = $_POST["salida"];
+			  $destino     = $_POST["destino"];
+
+			  $horaS       = $_POST["horaS"];
+			  $minutosS    = $_POST["minutosS"];
+			  $apS         = $_POST["apS"];
+
+			  $horaL       = $_POST["horaL"];
+			  $minutosL    = $_POST["minutosL"];
+			  $apL         = $_POST["apL"];
+
+			  $fechaActual = $_POST["fechaActual"];
+			  
+			  $responsable = $_POST["rname"];
+
+
+			  $this->load->model("solicitante");
+			  $data = array('nombre'=>$solicitante);
+			  $result = $this->solicitante->insert($data);
+
+
+			  $this->load->model("actividad");
+			  $data = array('nombreResponsable'=>$responsable,'cedulaResponsable'=>$cedulaR,'descripcion'=>$descripcion);
+			  $result = $this->actividad->insert($data);
+
+
+			  if($apS==1){
+			  	$horaS+=12;
+			  }
+			  $dateSalida=$fechaActual." ".$horaS.":".$minutosS.":00";
+			  
+			  if($apL==1){
+			  	$horaL+=12;
+			  }
+			  $dateLlegada= $fechaActual." ".$horaL.":".$minutosL.":00";
+
+			  $this->load->model("viaje");
+			  $data = array('fechaSalida'=>$dateSalida,'fechaLlegada'=>$dateLlegada, 'direccionOrigen'=>$salida, 'direccionDestino'=>$destino);
+			  $result = $this->viaje->insert($data);
+			
+
+			  $query = $this->actividad->getLastInsert();
+			  $respuesta= $query[0];
+			  $idActividad= $respuesta->id;
+		 
+		 	  $query = $this->solicitante->getLastInsert();
+			  $respuesta= $query[0];
+			  $idSolicitante= $respuesta->id;
+
+			  $query = $this->viaje->getLastInsert();
+			  $respuesta= $query[0];
+			  $idViaje= $respuesta->id;
+
+
+			  $this->load->model("registro");
+			  $data = array('fechaSolicitud'=>$fechaActual,'codigoViaje'=> $idViaje,'codigoActividad'=>$idActividad,'codigoSolicitante'=>$idSolicitante,'codigoUnidad'=>$unidad,'codigoConductor'=>$conductor,'codigoVehiculo'=>$vehiculo );
+			  $result = $this->registro->insert($data);
+			  
+		}
+	}
+
+	public function getReservas(){
+
+		if($_POST) {	
+
+			$vehiculo = $_POST["vehiculo"];
+			$fecha    = $_POST["fecha"];
+
+			$this->load->model("registro");
+		
+			$result = $this->registro->getRegistros($fecha,$vehiculo);
+			$html='';
+
+			if($result!=0){
+
+				foreach ($result as $row) {
+					$html.="<tr id=\"".$row->codigo."\" class=\"click\">";
+					$html.="<td class=\"ref\">".$row->nombre."</td>";
+					$html.="<td class=\"fechaSalida\">".$row->fechaSalida."</td>";
+					$html.="<td class=\"fechaLlegada\">".$row->fechaLlegada."</td>";
+					$html.="<td class=\"descripcion\">".$row->descripcion."</td>";
+					$html.="<td class=\"direccionO\">".$row->direccionOrigen."</td>";
+					$html.="<td class=\"solicitante\">".$row->solicitante."</td>";
+					$html.="</tr>";		
+				}
+			}
+			
+			echo $html;
+		}
+	}
+	
 }
