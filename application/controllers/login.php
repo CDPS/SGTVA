@@ -21,9 +21,10 @@ class Login extends CI_Controller {
 				*/
                 $cedula = $_POST["cedula"];
 				$contrasenia =  $_POST["contrasenia"];
+				$pass = md5($contrasenia);
 
 				$this->load->model("usuario");
-				$result = $this->usuario->login($cedula, $contrasenia);
+				$result = $this->usuario->login($cedula, $pass);
 				
 				if($result) {
 
