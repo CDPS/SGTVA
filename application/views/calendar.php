@@ -33,6 +33,7 @@
         </div>
 
         <div class="container">
+            <h3 class="tituloProceso">PROCESO</h3>
             <div class="row">
                 <div class="page-header">
                     <div class="pull-right form-inline">

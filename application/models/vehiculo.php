@@ -23,10 +23,12 @@ class Vehiculo extends CI_Model {
 
     function insert($data)
     {
-        if($this->db->insert('vehiculos', $data)){
-            return 1;
+        $this->db->insert('vehiculos', $data);
+        
+        if($this->db->affected_rows()==0){
+            return 0;
         }
-        return 0;
+        return 1;
     }
 
     function update($id,$data){

@@ -1,11 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+if ( ! defined('BASEPATH')){
+	exit('No direct script access allowed');
+}
 class Home extends CI_Controller {
 
  
  	function index() {
-   		
    		
 	     if($this->session->userdata('logged_in')) {
 
@@ -84,7 +84,11 @@ class Home extends CI_Controller {
 					$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 					$result = $this->vehiculo->insert($data);
 				
-					echo "ok";
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
@@ -174,7 +178,11 @@ class Home extends CI_Controller {
 					$this->load->model("conductor");
 					$data = array('nombre'=>$nombre,'numTelefono'=>$telefono);
 					$result = $this->conductor->insert($data);
-					echo "ok";
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 
@@ -196,7 +204,12 @@ class Home extends CI_Controller {
 					$this->load->model("conductor");
 					$data = array('nombre'=>$nombre,'numTelefono'=>$telefono);
 					$result = $this->conductor->update($id,$data);
-					echo "ok";
+					
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
@@ -215,7 +228,12 @@ class Home extends CI_Controller {
 					
 					$this->load->model("conductor");
 					$result = $this->conductor->delete($id);
-					echo "ok";
+					
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
