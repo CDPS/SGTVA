@@ -261,11 +261,12 @@ class Home extends CI_Controller {
 		
 			$codigo = $_POST["codigo"];
 			$contrasenia =  $_POST["contrasenia"];
+			$pass = md5($contrasenia);
 			
-			if ($contrasenia != null && $codigo!=null) {
+			if ($pass != null && $codigo!=null) {
 				
 				$this->load->model("usuario");
-				$result = $this->usuario->verificarContra($codigo,$contrasenia);
+				$result = $this->usuario->verificarContra($codigo,$pass);
 				
 				if ($result != false) {
 
@@ -293,9 +294,11 @@ class Home extends CI_Controller {
 				$contrasenia =  $_POST["contrasenia"];
 				
 				if ($nombre!= null && $cedula != null && $contrasenia != null && $codigo!=null) {
+
+					$pass = md5($contrasenia);
 					
 					$this->load->model("usuario");
-					$data = array('nombre'=>$nombre,'cedula'=>$cedula,'contrasenia'=>$contrasenia);
+					$data = array('nombre'=>$nombre,'cedula'=>$cedula,'contrasenia'=>$pass);
 					$result = $this->usuario->update($codigo,$data);
 					
 					if ($result == 1) {
