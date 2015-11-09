@@ -1,11 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+if ( ! defined('BASEPATH')){
+	exit('No direct script access allowed');
+}
 class Home extends CI_Controller {
 
  
  	function index() {
-   		
    		
 	     if($this->session->userdata('logged_in')) {
 
@@ -85,7 +85,11 @@ class Home extends CI_Controller {
 					$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
 					$result = $this->vehiculo->insert($data);
 				
-					echo "ok";
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
@@ -176,7 +180,11 @@ class Home extends CI_Controller {
 					$this->load->model("conductor");
 					$data = array('nombre'=>$nombre,'numTelefono'=>$telefono);
 					$result = $this->conductor->insert($data);
-					echo "ok";
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 
@@ -198,7 +206,12 @@ class Home extends CI_Controller {
 					$this->load->model("conductor");
 					$data = array('nombre'=>$nombre,'numTelefono'=>$telefono);
 					$result = $this->conductor->update($id,$data);
-					echo "ok";
+					
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
@@ -217,7 +230,12 @@ class Home extends CI_Controller {
 					
 					$this->load->model("conductor");
 					$result = $this->conductor->delete($id);
-					echo "ok";
+					
+					if($result==1){
+						echo "ok";
+					}else{
+						echo "fail";
+					}
 				}
 		}
 	}
@@ -397,48 +415,114 @@ class Home extends CI_Controller {
 			  $responsable = $_POST["rname"];
 
 
-			  $this->load->model("solicitante");
-			  $data = array('nombre'=>$solicitante);
-			  $result = $this->solicitante->insert($data);
-
-
-			  $this->load->model("actividad");
-			  $data = array('nombreResponsable'=>$responsable,'cedulaResponsable'=>$cedulaR,'descripcion'=>$descripcion);
-			  $result = $this->actividad->insert($data);
-
-
 			  if($apS==1){
 			  	$horaS+=12;
 			  }
+
+			  if($horaS<10){
+			  	$horaS="0".$horaS;
+			  }
+
+
 			  $dateSalida=$fechaActual." ".$horaS.":".$minutosS.":00";
 			  
 			  if($apL==1){
 			  	$horaL+=12;
 			  }
+
+			  if($horaL<10){
+			  	$horaL="0".$horaL;
+			  }
+
 			  $dateLlegada= $fechaActual." ".$horaL.":".$minutosL.":00";
 
-			  $this->load->model("viaje");
-			  $data = array('fechaSalida'=>$dateSalida,'fechaLlegada'=>$dateLlegada, 'direccionOrigen'=>$salida, 'direccionDestino'=>$destino);
-			  $result = $this->viaje->insert($data);
-			
 
-			  $query = $this->actividad->getLastInsert();
-			  $respuesta= $query[0];
-			  $idActividad= $respuesta->id;
-		 
-		 	  $query = $this->solicitante->getLastInsert();
-			  $respuesta= $query[0];
-			  $idSolicitante= $respuesta->id;
+			  //validación !!! 
 
-			  $query = $this->viaje->getLastInsert();
-			  $respuesta= $query[0];
-			  $idViaje= $respuesta->id;
+			   $this->load->model("registro");
+			   $registros = $this->registro->getRegistrosDia($fechaActual);
+			   $bandera=1;
+
+			   if($registros!=0){
+			   		foreach ($registros as $row) {
+					
+						if($vehiculo==$row->codigoVehiculo){
+
+							if($dateSalida>=$row->fechaSalida && $dateSalida<=$row->fechaLlegada){
+								$bandera=0;
+							}
+
+							if($dateSalida<$row->fechaSalida && $dateSalida>$row->fechaLlegada){
+								$bandera=0;
+							}
+							if($dateLlegada>=$row->fechaSalida && $dateLlegada<=$row->fechaLlegada){
+								$bandera=0;
+							}
+							if($dateLlegada<$row->fechaSalida && $dateLlegada>$row->fechaLlegada){
+								$bandera=0;
+							}
+						}
+
+						if($conductor==$row->codigoConductor){
+
+							if($dateSalida>=$row->fechaSalida && $dateSalida<=$row->fechaLlegada){
+								$bandera=0;
+							}
+
+							if($dateSalida<$row->fechaSalida && $dateSalida>$row->fechaLlegada){
+								$bandera=0;
+							}
+
+							if($dateLlegada>=$row->fechaSalida && $dateLlegada<=$row->fechaLlegada){
+								$bandera=0;
+							}
+
+							if($dateLlegada<$row->fechaSalida && $dateLlegada>$row->fechaLlegada){
+								$bandera=0;
+							}
+						}
+			        }
+			   }
+			   
+			   if($bandera==1){
+
+					  $this->load->model("solicitante");
+					  $data = array('nombre'=>$solicitante);
+					  $result = $this->solicitante->insert($data);
 
 
-			  $this->load->model("registro");
-			  $data = array('fechaSolicitud'=>$fechaActual,'codigoViaje'=> $idViaje,'codigoActividad'=>$idActividad,'codigoSolicitante'=>$idSolicitante,'codigoUnidad'=>$unidad,'codigoConductor'=>$conductor,'codigoVehiculo'=>$vehiculo );
-			  $result = $this->registro->insert($data);
-			  
+					  $this->load->model("actividad");
+					  $data = array('nombreResponsable'=>$responsable,'cedulaResponsable'=>$cedulaR,'descripcion'=>$descripcion);
+					  $result = $this->actividad->insert($data);
+
+
+					  $this->load->model("viaje");
+					  $data = array('fechaSalida'=>$dateSalida,'fechaLlegada'=>$dateLlegada, 'direccionOrigen'=>$salida, 'direccionDestino'=>$destino);
+					  $result = $this->viaje->insert($data);
+					
+
+					  $query = $this->actividad->getLastInsert();
+					  $respuesta= $query[0];
+					  $idActividad= $respuesta->id;
+				 
+				 	  $query = $this->solicitante->getLastInsert();
+					  $respuesta= $query[0];
+					  $idSolicitante= $respuesta->id;
+
+					  $query = $this->viaje->getLastInsert();
+					  $respuesta= $query[0];
+					  $idViaje= $respuesta->id;
+
+
+					  $this->load->model("registro");
+					  $data = array('fechaSolicitud'=>$fechaActual,'codigoViaje'=> $idViaje,'codigoActividad'=>$idActividad,'codigoSolicitante'=>$idSolicitante,'codigoUnidad'=>$unidad,'codigoConductor'=>$conductor,'codigoVehiculo'=>$vehiculo );
+					  $result = $this->registro->insert($data);
+
+			   		  echo "ok";
+			   }else{
+
+			   		  echo "fail";
+			   }
 		}
 	}
 
@@ -471,5 +555,33 @@ class Home extends CI_Controller {
 			echo $html;
 		}
 	}
+
+
+
+	public function reportes(){
+
+		//$this->load->model("conductor");
+		$this->load->model("registro");
+
+		$result = $this->registro->getReporte();
+		$html='';
+
+		if($result!=0){
+
+			foreach ($result as $row) {
+					$html.="<tr>";
+					$html.="<th class=\"tipo\">".$row->tipoUnidad."</th>";
+					$html.="<th class=\"nom\">".$row->nombre."</th>";
+				 	$html.="<th class=\"cant\">".$row->cantidad."</th>";
+					$html.="</tr>";		
+			}
+		}
+
+		$data['html']=$html;
+		$response = $this->load->view('reportes_view',$data ,TRUE);
+
+		echo $response;
+	}
+
 	
 }

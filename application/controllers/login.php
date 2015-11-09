@@ -1,9 +1,14 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+
+if ( ! defined('BASEPATH')){
+ exit('No direct script access allowed');
+}
  
 class Login extends CI_Controller {
  
-	 function __construct() {
+	 
 
+	 function __construct() {
 	   parent::__construct();
 	 }
 	 
@@ -45,8 +50,6 @@ class Login extends CI_Controller {
 			     else
 			     {
 			     	echo "fail";
-			       //$this->form_validation->set_message('login', 'Invalid username or password');
-
 			     }
 		}
 	}

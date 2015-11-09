@@ -1,9 +1,10 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
+<?php 
+if ( ! defined('BASEPATH')){
+  exit('No direct script access allowed');
+} 
 class VerifyLogin extends CI_Controller {
  
    function __construct() {
-
      parent::__construct();
      $this->load->model('usuario','',TRUE);
    }
@@ -14,7 +15,7 @@ class VerifyLogin extends CI_Controller {
      $this->form_validation->set_rules('cedula', 'Cedula', 'trim|required');
      $this->form_validation->set_rules('contrasenia', 'Contrasenia', 'trim|required');
    
-     if($this->form_validation->run() == FALSE)
+     if(! $this->form_validation->run())
      {
        //Field validation failed.  User redirected to login page
        $this->load->view('login_view');

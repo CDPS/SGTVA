@@ -55,8 +55,14 @@ $(document).ready(function() {
 
      	var fechaActual =  $(".fechaActual").attr("id");
 
-     	alert(fechaActual);
-     	$.ajax({
+ 		
+
+ 		if(conductor==0){
+
+ 			alert("Debe seleccionar un conductor");
+ 		}else{
+
+ 			$.ajax({
                 url: "home/agregarReserva",
                 type: "POST",
                 dataType: "html",
@@ -81,9 +87,20 @@ $(document).ready(function() {
 			    },
                 success: function(respuesta){
                     
-                   location.href ="/SGTVA/home";
+                    if(respuesta=="ok"){
+
+                    	alert("Se registro correctamente");
+                    	location.href ="/SGTVA/home";
+                    }else{
+                    	alert("No se registro correctamente");
+                    }
+
+                   	
                 }
         });
+
+ 		}
+     	
     });
 
 });

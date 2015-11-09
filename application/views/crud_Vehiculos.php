@@ -24,7 +24,6 @@
 
 
 	<div class="crudv">
-
 	<fieldset class="scheduler-border">
     <legend class="scheduler-border">Detalle Vehiculo</legend>
 		

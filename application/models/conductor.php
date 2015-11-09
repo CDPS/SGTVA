@@ -23,10 +23,12 @@ class Conductor extends CI_Model {
 
     function insert($data)
     {
-        if($this->db->insert('conductores', $data)){
-            return 1;
-        }
-        return 0;
+        $this->db->insert('conductores', $data);
+       
+       if($this->db->affected_rows()==0) {
+         return 0;
+       }       
+       return 1;;
     }
 
     function update($id,$data){
