@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <project name="MyApplication" default="main" basedir=".">
     <property file="./build/properties/default.properties" />
+=======
+<project name="SGTVA" default="main" basedir=".">
+    
+    <property file="./build/properties/default.properties" />
+       
+>>>>>>> refs/remotes/origin/development
     <if>
         <isset property="build.env" />
         <then>
@@ -15,13 +22,23 @@
         <echo message="| Building The Project                     |"/>
         <echo message="|                                          |"/>
         <echo message="+------------------------------------------+"/>
+<<<<<<< HEAD
  	<phing phingfile="${project.basedir}/build/build-configuration.xml" target="configuration" />
        
        <zip destfile="C:/Users/USUARIO/Desktop/proyectoZip/SGTVA.zip" basedir=".">
+=======
+
+ 	    <phing phingfile="${project.basedir}/build/build-configuration.xml" target="configuration" />
+       
+        <zip destfile="C:/Users/USUARIO/Desktop/proyectoZip/SGTVA.zip" basedir=".">
+>>>>>>> refs/remotes/origin/development
             <include name="*" />
     	</zip>
     </target>
 
+<<<<<<< HEAD
    
 
+=======
+>>>>>>> refs/remotes/origin/development
 </project>
