@@ -12,6 +12,8 @@ class TestReservas extends CI_Controller {
   public function index()
 	{
 		$this->testgetReservas();
+		$this->testgetRegistrosDia();
+		$this->testFechas();
 	}
 
 	public function testgetReservas(){
@@ -45,4 +47,40 @@ class TestReservas extends CI_Controller {
 		echo $this->unit->run($result, $esperado, 'getReservasTest');	
 		
 	}
+
+
+	public function testgetRegistrosDia(){
+
+
+		$esperado=array('codigoVehiculo' =>4,'codigoConductor'=>8,'fechaLlegada' =>"2015-10-30 08:45:00", 'fechaSalida' =>"2015-10-30 07:00:00");
+		$fecha = "2015-10-30";
+		$query = $this->registro->getRegistrosDia($fecha);
+		$respuesta = $query[0];
+		$result = array();
+
+		$result['codigoVehiculo'] = $respuesta->codigoVehiculo;
+    	$result['codigoConductor']= $respuesta->codigoConductor;
+    	$result['fechaLlegada'] = $respuesta->fechaLlegada;
+		$result['fechaSalida'] = $respuesta->fechaSalida;
+		
+		echo $this->unit->run($result, $esperado, 'testgetRegistrosDia');	
+	}
+
+	public function testFechas(){
+
+		
+		$fechaInicio="2015-11-25 7:00:00";
+		$fechaFin=   "2015-11-25 9:00:00";
+
+		$fechaInicio1="2015-11-25 10:00:00";
+		$fechaFin1=   "2015-11-25 11:00:00";
+
+		if($fechaFin1>$fechaInicio && $fechaFin1 <$fechaFin){
+			
+			echo $this->unit->run(0, 1, 'testFechas');	
+		}else{
+			echo $this->unit->run(1, 1, 'testFechas');	
+		}
+	}
+	
 }

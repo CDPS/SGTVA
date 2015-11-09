@@ -44,4 +44,33 @@ class Registro extends CI_Model {
         return 0;
     }
 
+    
+    function getReporte(){
+
+         $query= $this->db->query("SELECT u.tipoUnidad, u.nombre, COUNT(r.codigo) as cantidad
+                                    FROM registros r JOIN unidades u 
+                                    ON r.codigoUnidad = u.codigo
+                                    GROUP BY u.nombre
+                                    ORDER BY COUNT(r.codigo) DESC");
+
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+        return 0;
+    }
+
+    function getRegistrosDia($fecha){
+     
+        $query= $this->db->query("SELECT r.codigoVehiculo, r.codigoConductor,v.fechaLlegada,v.fechaSalida
+                                  FROM registros r JOIN viajes v 
+                                  on r.codigoViaje= v.codigo
+                                  WHERE r.fechaSolicitud='$fecha' ");
+
+        if($query->num_rows() > 0 )
+        {
+            return $query->result();
+        }
+        return 0;
+    }
 }
