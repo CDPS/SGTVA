@@ -29,6 +29,7 @@ class Home extends CI_Controller {
  
 
 //----------------------------------------------VEHICULOS---------------------------------------------//
+
 	public function vehiculos(){
 
 		$this->load->model("vehiculo");
@@ -137,6 +138,7 @@ class Home extends CI_Controller {
 	}
 
 //----------------------------------------------CONDUCTORES---------------------------------------------//
+	
 	public function conductores(){
 
 		$this->load->model("conductor");
