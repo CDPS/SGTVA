@@ -2,9 +2,6 @@
     <script src="application/js/adminUsuario.js"></script> 
 </head>
 
-<h3>Usuario</h3>
-
- 
 <div class="uContainer">
 	
 	<div class="infoUsuario">

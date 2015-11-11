@@ -1,7 +1,7 @@
 <div class="divReportes">
 
 	<fieldset class="contenedorReserva">
-    <legend class="contenedorReserva">Reporte Programa,Facultad y Dependencia</legend>
+    <legend class="contenedorReserva">Reporte programa, facultad y dependencia</legend>
 		
 		    
     	<div id="divTabla">

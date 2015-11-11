@@ -33,7 +33,7 @@
         </div>
 
         <div class="container">
-            <h3 class="tituloProceso">Registro de solicitud de vehiculo</h3>
+            <h3 class="row">Registro de solicitud de vehiculo</h3>
             <div class="row">
                 <div class="page-header">
                     <div class="pull-right form-inline">

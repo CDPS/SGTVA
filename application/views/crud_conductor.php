@@ -2,11 +2,15 @@
     <script src="application/js/crudConductores.js"></script> 
 </head>
 
-<h3>Conductores</h3>
 
- 
 <div class="vContainer">
+
+	<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Conductores</legend>
+
 	<div class="dtabla">
+		<fieldset class="scheduler-border">
+    	<legend class="scheduler-border">Lista de conductores</legend>
 		<table class="table table-hover" id="cuerpoT">
 					<thead>
 						<tr>
@@ -19,6 +23,7 @@
 						<?php echo $html ?>
 					</tbody>
 		</table>
+		</fieldset>
 	</div>
 	<div class="crudv">
 
@@ -44,4 +49,5 @@
 
 	</div>
 
+</fieldset>
 </div>

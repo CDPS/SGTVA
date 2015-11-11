@@ -2,11 +2,15 @@
     <script src="application/js/crd.js"></script> 
 </head>
 
-<h3>Vehiculos</h3>
-
  
 <div class="vContainer">
+
+	<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Vehiculos</legend>
+
 	<div class="dtabla">
+		<fieldset class="scheduler-border">
+    	<legend class="scheduler-border">Lista de vehiculo</legend>
 		<table class="table table-hover" id="cuerpoT">
 					<thead>
 						<tr>
@@ -20,6 +24,7 @@
 						<?php echo $html ?>
 					</tbody>
 		</table>
+		</fieldset>
 	</div>
 
 
@@ -48,5 +53,6 @@
 
 	</div>
 
+</fieldset>
 </div>
 
