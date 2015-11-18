@@ -546,25 +546,85 @@ class Home extends CI_Controller {
 		//$this->load->model("conductor");
 		$this->load->model("registro");
 
-		$result = $this->registro->getReporte();
 		$html='';
-
-		if($result!=0){
-
-			foreach ($result as $row) {
-					$html.="<tr>";
-					$html.="<th class=\"tipo\">".$row->tipoUnidad."</th>";
-					$html.="<th class=\"nom\">".$row->nombre."</th>";
-				 	$html.="<th class=\"cant\">".$row->cantidad."</th>";
-					$html.="</tr>";		
-			}
-		}
-
 		$data['html']=$html;
 		$response = $this->load->view('reportes_view',$data ,TRUE);
 
 		echo $response;
 	}
 
+
+	public function getReportes(){
+
+		//$this->load->model("conductor");
+
+
+		if($_POST) {	
+			        
+			$fechaI = $_POST["fechaI"];
+			$fechaF   = $_POST["fechaF"];
+			$this->load->model("registro");
+		
+			$result = $this->registro->getReporte($fechaI,$fechaF);
+			$html='';
+
+			if($result!=0){
+
+				foreach ($result as $row) {
+						$html.="<tr>";
+						$html.="<th class=\"tipo\">".$row->tipoUnidad."</th>";
+						$html.="<th class=\"nom\">".$row->nombre."</th>";
+					 	$html.="<th class=\"cant\">".$row->cantidad."</th>";
+						$html.="</tr>";		
+				}
+			}
+
+			echo $html;
+		}
 	
+	}
+
+
+	public function pdf(){
+		// As PDF creation takes a bit of memory, we're saving the created file in /downloads/reports/
+
+
+		if($_POST) {	
+			        
+			$fechaI = $_POST["fechaI"];
+			$fechaF   = $_POST["fechaF"];
+			$mes = $_POST["mes"];
+			$this->load->model("registro");
+		
+			$result = $this->registro->getReporte($fechaI,$fechaF);
+			$html='';
+
+			if($result!=0){
+
+				foreach ($result as $row) {
+						$html.="<tr>";
+						$html.="<th class=\"tipo\">".$row->tipoUnidad."</th>";
+						$html.="<th class=\"nom\">".$row->nombre."</th>";
+					 	$html.="<th class=\"cant\">".$row->cantidad."</th>";
+						$html.="</tr>";		
+				}
+			}
+
+			$pdfFilePath = FCPATH."/reports/report.pdf";
+			$data['html'] = $html; // pass data to the view
+			$data['mes']= $mes;
+			
+			    ini_set('memory_limit','32M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="😉" draggable="false" class="emoji">
+			    $html = $this->load->view('reports',$data ,TRUE); // render the view into HTML
+			     
+			    $this->load->library('pdf');
+			    $pdf = $this->pdf->load();
+			    $pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="😉" draggable="false" class="emoji">
+			    $pdf->WriteHTML($html); // write the HTML into the PDF
+			    $pdf->Output($pdfFilePath, 'F'); // save to file because we can
+			
+			 redirect("http://localhost/SGTVA/reports/report.pdf"); 
+		}
+
+	}
 }

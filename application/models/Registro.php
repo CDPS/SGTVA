@@ -45,11 +45,12 @@ class Registro extends CI_Model {
     }
 
     
-    function getReporte(){
+    function getReporte($fechaInicio,$fechaFin){
 
          $query= $this->db->query("SELECT u.tipoUnidad, u.nombre, COUNT(r.codigo) as cantidad
                                     FROM registros r JOIN unidades u 
                                     ON r.codigoUnidad = u.codigo
+                                    WHERE r.fechaSolicitud BETWEEN '$fechaInicio' AND '$fechaFin'
                                     GROUP BY u.nombre
                                     ORDER BY COUNT(r.codigo) DESC");
 
