@@ -14,6 +14,7 @@ class TestReservas extends CI_Controller {
 		$this->testgetReservas();
 		$this->testgetRegistrosDia();
 		$this->testFechas();
+		$this->testFormato();
 	}
 
 	public function testgetReservas(){
@@ -81,6 +82,16 @@ class TestReservas extends CI_Controller {
 		}else{
 			echo $this->unit->run(1, 1, 'testFechas');	
 		}
+	}
+
+	public function testFormato(){
+		$fecha ="17/11/2015 23:37";
+		$esperado="2015-11-17 23:37";
+		$ar =  explode(" ", $fecha);
+		$arD= explode("/", $ar[0]);
+		$result= $arD[2]."-".$arD[1]."-".$arD[0]." ".$ar[1];
+
+		echo $this->unit->run($result, $esperado, 'testFormato');	
 	}
 	
 }

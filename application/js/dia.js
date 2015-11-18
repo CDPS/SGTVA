@@ -34,28 +34,22 @@ $(document).ready(function() {
 	$('#cRV').click(function(event) {
         
      	var unidad = $(".unidadE").attr("id");
-     	var vehiculo =$(".vehiculoE").attr("id");
-     	var solicitante = $("#solicitante").val();
-     	
-     	var responsable = $("#nombreR").val();
+        var vehiculo =$(".vehiculoE").attr("id");
+        var solicitante = $("#solicitante").val();
+        
+        var responsable = $("#nombreR").val();
 
-     	var cedulaR =  $("#cedulaR").val();
-     	var descripcion =  $("#descripcion").val();
-     	var salida =  $("#salida").val();
-     	var destino =  $("#destino").val();
+        var cedulaR =  $("#cedulaR").val();
+        var descripcion =  $("#descripcion").val();
+        var salida =  $("#salida").val();
+        var destino =  $("#destino").val();
 
-     	var horaS =  $("#horaS").val();
-     	var minutosS=  $("#minutosS").val();
-     	var apS=  $("#cmbHoraS").val();
+        var from = $('#from').data("date");
 
-     	var horaL =  $("#horaL").val();
-     	var minutosL=  $("#minutosL").val();
-     	var apL=  $("#cmbHoraL").val();
-     	var conductor = $("#cmbConductorV").val();
-
-     	var fechaActual =  $(".fechaActual").attr("id");
-
- 		
+        var to = $('#to').data('date');
+    
+        var conductor = $("#cmbConductorV").val();
+        var fechaActual =  $(".fechaActual").attr("id");
 
  		if(conductor==0){
 
@@ -69,21 +63,17 @@ $(document).ready(function() {
                 data:{
                    
                   	 unidad: unidad,          
-			     	 vehiculo: vehiculo,
-			     	 solicitante: solicitante,
-			     	 cedulaR: cedulaR,
-			     	 descripcion: descripcion,
-			     	 salida: salida,
-			     	 destino: destino,
-					 horaS: horaS,
-			     	 minutosS: minutosS,
-			     	 apS: apS,
-			     	 horaL: horaL,
-			     	 minutosL: minutosL,
-			     	 apL: apL,
-			     	 rname: responsable,
-			     	 fechaActual: fechaActual,
-			     	 conductor: conductor
+                     vehiculo: vehiculo,
+                     solicitante: solicitante,
+                     cedulaR: cedulaR,
+                     descripcion: descripcion,
+                     salida: salida,
+                     destino: destino,
+                     to: to,
+                     from: from,
+                     rname: responsable,
+                     fechaActual: fechaActual,
+                     conductor: conductor
 			    },
                 success: function(respuesta){
                     
