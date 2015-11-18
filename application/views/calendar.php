@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>SGTVA </title>
-    <link rel="stylesheet" type="text/css" href="application/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="application/css/css.css">
     <link rel="stylesheet" href="bower_components/bootstrap-calendar/css/calendar.css">
 
@@ -38,15 +38,15 @@
                 <div class="page-header">
                     <div class="pull-right form-inline">
                         <div class="btn-group">
-                            <button class="btn btn-primary" data-calendar-nav="prev"><< Anterior</button>
+                            <button class="btn btn-success" data-calendar-nav="prev"><< Anterior</button>
                             <button class="btn" data-calendar-nav="today">Hoy</button>
-                            <button class="btn btn-primary" data-calendar-nav="next">Siguiente >></button>
+                            <button class="btn btn-success" data-calendar-nav="next">Siguiente >></button>
                         </div>
                         <div class="btn-group">
-                            <button class="btn btn-warning" data-calendar-view="year">Año</button>
-                            <button class="btn btn-warning active" data-calendar-view="month">Mes</button>
-                            <button class="btn btn-warning" data-calendar-view="week">Semana</button>
-                            <button class="btn btn-warning" data-calendar-view="day" id="dia">Día</button>
+                            <button class="btn btn-success" data-calendar-view="year">Año</button>
+                            <button class="btn btn-success" data-calendar-view="month">Mes</button>
+                            <button class="btn btn-success" data-calendar-view="week">Semana</button>
+                            <button class="btn btn-success" data-calendar-view="day" id="dia">Día</button>
                         </div>
                     </div>
                     <h3 id="ui"></h3>

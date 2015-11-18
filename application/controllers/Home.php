@@ -64,7 +64,7 @@ class Home extends CI_Controller {
 		if($result!=0){
 
 			foreach ($result as $row) {
-				$html.="<option value=\"".$row->codigo."\">".$row->referencia."</option>";		
+				$html.="<option value=\"".$row->codigo."\" >".$row->referencia."</option>";		
 			}
 		}
 		echo $html;
@@ -82,14 +82,20 @@ class Home extends CI_Controller {
 				if ($referencia!= null && $placa != null && $cm != null) {
 					
 					$this->load->model("vehiculo");
-					$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
-					$result = $this->vehiculo->insert($data);
+					$result = $this->vehiculo->findByPlaca($placa);
+
+					if($result==0){
+
+						$data = array('referencia'=>$referencia,'placa'=>$placa,'capacidadMax'=>$cm);
+						$result = $this->vehiculo->insert($data);
 				
-					if($result==1){
-						echo "ok";
-					}else{
-						echo "fail";
+						if($result==1){
+							echo "ok";
+						}else{
+							echo "fail";
+						}
 					}
+					
 				}
 		}
 	}
@@ -378,8 +384,9 @@ class Home extends CI_Controller {
 				$data['conductores']= $conductores;
 				$fecha = $_POST["fecha"];
 				$vehiculo = $_POST["vehiculo"];
+
 				$data['fecha']=$fecha;
-				$data['vehiculo'] = $vehiculo;
+				$data['vehiculo'] = $vehiculo;	
 				$response = $this->load->view('reserva',$data ,TRUE);
 
 				echo $response;
@@ -402,40 +409,17 @@ class Home extends CI_Controller {
 			  $salida      = $_POST["salida"];
 			  $destino     = $_POST["destino"];
 
-			  $horaS       = $_POST["horaS"];
-			  $minutosS    = $_POST["minutosS"];
-			  $apS         = $_POST["apS"];
-
-			  $horaL       = $_POST["horaL"];
-			  $minutosL    = $_POST["minutosL"];
-			  $apL         = $_POST["apL"];
-
+			
 			  $fechaActual = $_POST["fechaActual"];
 			  
 			  $responsable = $_POST["rname"];
 
-
-			  if($apS==1){
-			  	$horaS+=12;
-			  }
-
-			  if($horaS<10){
-			  	$horaS="0".$horaS;
-			  }
-
-
-			  $dateSalida=$fechaActual." ".$horaS.":".$minutosS.":00";
+			  $dateSalida= $_POST["from"];
 			  
-			  if($apL==1){
-			  	$horaL+=12;
-			  }
+			  $dateLlegada= $_POST["to"];
 
-			  if($horaL<10){
-			  	$horaL="0".$horaL;
-			  }
-
-			  $dateLlegada= $fechaActual." ".$horaL.":".$minutosL.":00";
-
+			  $start = $_POST["from"];
+			  $end =  $_POST["to"];
 
 			  //validación !!! 
 
@@ -446,7 +430,7 @@ class Home extends CI_Controller {
 			   if($registros!=0){
 			   		foreach ($registros as $row) {
 					
-						if($vehiculo==$row->codigoVehiculo){
+						if($vehiculo==$row->codigoVehiculo || $conductor==$row->codigoConductor){
 
 							if($dateSalida>=$row->fechaSalida && $dateSalida<=$row->fechaLlegada){
 								$bandera=0;
@@ -458,25 +442,6 @@ class Home extends CI_Controller {
 							if($dateLlegada>=$row->fechaSalida && $dateLlegada<=$row->fechaLlegada){
 								$bandera=0;
 							}
-							if($dateLlegada<$row->fechaSalida && $dateLlegada>$row->fechaLlegada){
-								$bandera=0;
-							}
-						}
-
-						if($conductor==$row->codigoConductor){
-
-							if($dateSalida>=$row->fechaSalida && $dateSalida<=$row->fechaLlegada){
-								$bandera=0;
-							}
-
-							if($dateSalida<$row->fechaSalida && $dateSalida>$row->fechaLlegada){
-								$bandera=0;
-							}
-
-							if($dateLlegada>=$row->fechaSalida && $dateLlegada<=$row->fechaLlegada){
-								$bandera=0;
-							}
-
 							if($dateLlegada<$row->fechaSalida && $dateLlegada>$row->fechaLlegada){
 								$bandera=0;
 							}
@@ -514,9 +479,27 @@ class Home extends CI_Controller {
 					  $idViaje= $respuesta->id;
 
 
+
+					  $this->load->model("vehiculo");
+					  $query = $this->vehiculo->findById($vehiculo);
+					  $respuesta= $query[0];
+					  $ref= $respuesta->referencia;
+				      
+				      $this->load->model("conductor");
+					  $query = $this->conductor->findById($conductor);
+					  $respuesta= $query[0];
+					  $cond= $respuesta->nombre;
+
 					  $this->load->model("registro");
 					  $data = array('fechaSolicitud'=>$fechaActual,'codigoViaje'=> $idViaje,'codigoActividad'=>$idActividad,'codigoSolicitante'=>$idSolicitante,'codigoUnidad'=>$unidad,'codigoConductor'=>$conductor,'codigoVehiculo'=>$vehiculo );
 					  $result = $this->registro->insert($data);
+
+
+					  $title="Conductor: ".$cond."\n"."Vehiculo: ".$ref."\n"."Fecha Salida: ".$start."\n"."Fecha Llegada: ".$end ;
+					 
+					  $data = array('end'=>$end,'start'=>$start,'class'=>"event-important",'title'=>$title);
+					  $this->load->model('event');
+					  $this->event->insert($data);
 
 			   		  echo "ok";
 			   }else{

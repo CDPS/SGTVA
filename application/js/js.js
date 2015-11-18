@@ -58,7 +58,8 @@ $(document).ready(function() {
         
         var fecha = $('.dA').attr("id");
         var vehiculo= $( "#cmbVehiculos" ).val();
-        
+    
+
         if(vehiculo==0){
             alert("Debe seleccionar un vehiculo");
         }else{

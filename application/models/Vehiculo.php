@@ -55,6 +55,20 @@ class Vehiculo extends CI_Model {
         return 0;
     }
 
+    function findByPlaca($placa){
+
+
+        $this->db->select('codigo,referencia,placa,capacidadMax');
+        $this->db->from('vehiculos');
+        $this->db->where('placa', $placa);
+    
+        $query = $this->db->get();
+        if($query->num_rows() == 1 )
+        {
+            return $query->result();
+        }
+        return 0;
+    }
 
     function getVehiculos(){
 
